@@ -138,15 +138,26 @@ list_years <- list_country_year_std %>% pull(year)
 
 #%% Map to data_from_missing function -----
 
-#%%%% Test first 56 -----
+#%%%% Test first three -----
+test <- list_country_year_std %>% slice(1:3)
+x <- test %>% pull(country) %>% as.character
+y <- test %>% pull(year)
 
-test <- list_country_year_std %>% slice(1:56)
+dat_test <- map2(x, y, data_from_missing)
+
+
+#%%%% Test first 42 (3 countries) -----
+
+test <- list_country_year_std %>% slice(1:42)
 list_countries <- test %>% pull(country) %>% as.character
 list_years <- test %>% pull(year)
 
-map2(.x = list_countries,
+dat_test <- map2(.x = list_countries,
                  .y = list_years,
-                 .f = data_from_missing(.x, .y))
+                 .f = data_from_missing)
 
-#TODO How to save the results?
+#TODO How to save the results? countryname.year for each matrix?
+# as_tibble for each element going through the list_countries and list_years?
+# Also this takes a while so putting it into targets workflow is a good idea... but how?
+
 #TODO next: write up function with this
