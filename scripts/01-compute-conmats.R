@@ -80,3 +80,9 @@ list_years <- test %>% pull(year)
 dat_test <- map2(.x = list_countries,
                  .y = list_years,
                  .f = data_from_missing)
+
+#TODO How to save the results? countryname.year for each matrix?
+# as_tibble for each element going through the list_countries and list_years?
+# Also this takes a while so putting it into targets workflow is a good idea... but how?
+
+#TODO Write up function with this?
