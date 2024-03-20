@@ -1,0 +1,7 @@
+# Revisions
+
+## Homepage
+
+Contact matrices describe the degree of contact between individuals of ~~given age groups.~~ ==different groups.==
+
+For example, this matrix describes the number of contacts between ~~individuals~~==age groups==.
