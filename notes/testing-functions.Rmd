@@ -1,0 +1,13 @@
+Speed result from using microbenchmark:
+
+```
+> microbenchmark(
++   tmap = savemat_map(tdat_contact),
++   tfor = savemat_for(tdat_contact)
++ )
+```
+
+    Unit: milliseconds
+     expr     min      lq     mean   median       uq      max neval cld
+     tmap 75.1572 81.7785 243.7681 94.20835 299.7014 2113.483   100   a
+     tfor 74.3159 79.7857 187.7371 89.60720 110.9280 1673.226   100   a
