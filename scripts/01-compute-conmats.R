@@ -23,6 +23,7 @@ list_country <- dat %>%
   distinct(country)
 
 list_country <- inner_join(list_country, all_countries, by = c("country" = "name"))
+#TODO validate that the inner join results in correct data being pulled out of wpp
 list_country <- list_country %>% pull(country) %>% as.character
 
 rm(all_countries)
@@ -39,7 +40,7 @@ create_pop_data <- function(country_list){
               \(x) wpp_age(x, "2015")) %>% 
     set_names(country_list)
   
-  data_pop <- map(tdat, 
+  data_pop <- map(data, 
                   \(x) as_conmat_population(x, 
                                             age = lower.age.limit, 
                                             population = population)) %>% 
@@ -72,7 +73,7 @@ testdat_contact <- create_contact_matrices_0to80(testdat_pop, test_countries)
 
 #%% All of the POLYMOD data ---------------------
 
-#TODO how do I put this in a targets workflow?
+#TODO how do I put this in a targets workflow? As this will be quite slow?
 
 # Save as csv files ------------------------
 
@@ -89,6 +90,6 @@ save_conmat_as_csv <- function(matrix_list, path = "./") {
   }
 }
 
-#%% Test files (3 countries) -------------
+#%% Test creating csv files (3 countries) -------------
 
 save_conmat_as_csv(testdat_contact, path = "./output/")
