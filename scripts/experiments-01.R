@@ -72,7 +72,7 @@ AFG1950_pop <- as_conmat_population(
 )
 
 age_breaks_0_80_plus <- c(seq(0, 80, by = 5), Inf)
-
+s
 AFG1950_contact <- extrapolate_polymod(
   population = AFG1950_pop,
   age_breaks = age_breaks_0_80_plus
@@ -161,3 +161,74 @@ dat_test <- map2(.x = list_countries,
 # Also this takes a while so putting it into targets workflow is a good idea... but how?
 
 #TODO next: write up function with this
+
+# Susbetting exercise -----------
+
+# Set up data for testing:
+# tdat, tdat_pop, tdat_contact
+
+str(tdat)
+
+t1 <- tdat[1]
+t1 <- tdat["Algeria"]
+
+# Either one of these methods work
+tdat_contact$Afghanistan$home
+t1 <- tdat_contact["Afghanistan"]
+dat1 <- as.data.frame(t1$Afghanistan$other)
+t2 <- tdat_contact[["Afghanistan"]]
+dat2 <- as.data.frame(t2$other)
+
+write.csv(dat2, "./output/Afghanistan_other.csv", row.names = TRUE)
+
+str(tdat_contact)
+
+save_matrices_as_csv <- function(country_list, matrix_list, path = "./") {
+  for (country_name in country_list) {
+    country_matrices <- matrix_list[[country_name]]
+    
+    for (matrix_name in names(country_matrices)) {
+      matrix_data <- country_matrices[[matrix_name]]
+      file_name <- sprintf("%s_%s.csv", country_name, matrix_name)
+      file_path <- file.path(path, file_name)
+      write.csv(matrix_data, file_path, row.names = TRUE)
+    }
+  }
+}
+
+save_matrices_as_csv(test_countries, tdat_contact, path = "./output/")
+
+# Do it again but with names inside the matrix list already
+savemat_for <- function(matrix_list, path = "./") {
+  for (country_name in names(matrix_list)) {
+    country_matrices <- matrix_list[[country_name]]
+    
+    for (matrix_name in names(country_matrices)) {
+      matrix_data <- country_matrices[[matrix_name]]
+      file_name <- sprintf("%s_%s.csv", country_name, matrix_name)
+      file_path <- file.path(path, file_name)
+      write.csv(matrix_data, file_path, row.names = TRUE)
+    }
+  }
+}
+
+# map version
+savemat_map <- function(matrix_list, path = "./") {
+  map(names(matrix_list), ~ {
+    country_name <- .
+    country_matrices <- matrix_list[[country_name]]
+    
+    map(names(country_matrices), ~ {
+      matrix_name <- .
+      matrix_data <- country_matrices[[matrix_name]]
+      file_name <- sprintf("%s_%s.csv", country_name, matrix_name)
+      file_path <- file.path(path, file_name)
+      write.csv(matrix_data, file_path, row.names = TRUE)
+    })
+  })
+}
+
+microbenchmark(
+  tmap = savemat_map(tdat_contact),
+  tfor = savemat_for(tdat_contact)
+)
