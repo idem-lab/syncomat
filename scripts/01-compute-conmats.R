@@ -1,6 +1,6 @@
 source("./scripts/00-setup.R")
 
-# Extract data up to extrapolate_polymod ---------------
+# Set-up: Grab data from wpp_age() ---------------
 
 dat <- wpp_age()
 
@@ -27,34 +27,48 @@ list_country <- list_country %>% pull(country) %>% as.character
 
 rm(all_countries)
 
-#%% Test first 3 countries -----
+# Create contact matrices --------
+
+create_pop_data <- function(country_list){
+  # This function takes the list of countries,
+  # plugs it into wpp_age() 
+  # and subsequently as_conmat_population()
+  # to derive the population data.
+  
+  data <- map(country_list, 
+              \(x) wpp_age(x, "2015")) %>% 
+    set_names(country_list)
+  
+  data_pop <- map(tdat, 
+                  \(x) as_conmat_population(x, 
+                                            age = lower.age.limit, 
+                                            population = population)) %>% 
+    set_names(country_list)
+  
+  data_pop
+}
+
+create_contact_matrices_0to80 <- function(data_pop, country_list){
+  # This function takes the population data and the list of countries
+  # derived from as_conmat_population()
+  # and subsequently uses extrapolate_polymod()
+  # to derive the social contact matrices
+  
+  age_breaks_0_80_plus <- c(seq(0, 80, by = 5), Inf)
+  
+  data_contact <- map(data_pop,
+                      \(x) extrapolate_polymod(x, 
+                                               age_breaks = age_breaks_0_80_plus)) %>% 
+    set_names(country_list)
+  
+  data_contact
+}
+
+#%% Test first 3 countries ----------
 
 test_countries <- list_country[1:3]
-
-# Step 1: extract from wpp_age
-
-tdat <- map(test_countries, 
-            \(x) wpp_age(x, "2015")) %>% 
-  set_names(test_countries)
-
-# Step 2: as_conmat_population
-
-tdat_pop <- map(tdat, 
-                \(x) as_conmat_population(x, 
-                                          age = lower.age.limit, 
-                                          population = population)) %>% 
-  set_names(test_countries)
-
-# Step 3: extrapolate_polymod
-
-age_breaks_0_80_plus <- c(seq(0, 80, by = 5), Inf)
-
-tdat_contact <- map(tdat_pop,
-                    \(x) extrapolate_polymod(x, 
-                                             age_breaks = age_breaks_0_80_plus)) %>% 
-  set_names(test_countries)
-
-#TODO Write up function with this?
+testdat_pop <- create_pop_data(test_countries)
+testdat_contact <- create_contact_matrices_0to80(testdat_pop, test_countries)
 
 #%% All of the POLYMOD data ---------------------
 
@@ -77,4 +91,4 @@ save_conmat_as_csv <- function(matrix_list, path = "./") {
 
 #%% Test files (3 countries) -------------
 
-save_conmat_as_csv(tdat_contact, path = "./output/")
+save_conmat_as_csv(testdat_contact, path = "./output/")
