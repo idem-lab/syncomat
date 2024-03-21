@@ -17,6 +17,7 @@ dat <- wpp_age()
 
 # From UN
 all_countries <- read_csv("./raw/all-countries.csv") %>% 
+  #TODO add link in as comment
   select(name)
 
 list_country <- dat %>% 
@@ -72,8 +73,14 @@ testdat_contact <- create_contact_matrices_0to80(testdat_pop, test_countries)
 
 #%% All of the POLYMOD data ---------------------
 
+#TODO
+
 
 # Save as csv files ------------------------
+
+#TODO in a directory for each country?
+# pkg fs::dir_create
+# pkg glue
 
 save_conmat_as_csv <- function(matrix_list, path = "./") {
   for (country_name in names(matrix_list)) {
@@ -81,7 +88,7 @@ save_conmat_as_csv <- function(matrix_list, path = "./") {
     
     for (matrix_name in names(country_matrices)) {
       matrix_data <- country_matrices[[matrix_name]]
-      file_name <- sprintf("%s_%s_%s.csv", country_name, matrix_name, "2015")
+      file_name <- sprintf("%s_%s_%s.csv", country_name, matrix_name, "2015") #TODO glue
       file_path <- file.path(path, file_name)
       write.csv(matrix_data, file_path, row.names = TRUE)
     }

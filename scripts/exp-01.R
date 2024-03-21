@@ -243,6 +243,8 @@ save_matrices_as_csv <- function(country_list, matrix_list, path = "./") {
 
 save_matrices_as_csv(test_countries, tdat_contact, path = "./output/")
 
+#TODO try the following two but with just one country. (lowest level)
+
 # Do it again but with names inside the matrix list already
 savemat_for <- function(matrix_list, path = "./") {
   for (country_name in names(matrix_list)) {
@@ -277,3 +279,23 @@ microbenchmark(
   tmap = savemat_map(tdat_contact),
   tfor = savemat_for(tdat_contact)
 )
+
+# Nick suggested the following:
+write_conmat_matrix <- function(conmat_list){
+  country_name <- names(conmat_list)
+  setting_names <- map(conmat_list, names) %>% unlist() %>% as.character()
+  new_file_names <- glue("{country_name}_{setting_names}.csv")
+  prepared_conmat_list <- 
+    purrr::walk2(
+      .x = conmat_list,
+      .y = new_file_names,
+      .f = \(.x,.y) write_csv(x = .x, file = .y, row.names = TRUE)
+    )
+}
+write_conmat_matrix(conmat_list)
+walk(conmat_list, write_conmat_matrix)
+as_tibble(conmat_list$italy$home) %>% 
+  mutate(x = names(.),
+         .before = everything()) %>% 
+  View()
+write.csv(conmat_list$italy$home, file = "home.csv")
