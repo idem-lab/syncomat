@@ -23,7 +23,6 @@ list_country <- dat %>%
   distinct(country)
 
 list_country <- inner_join(list_country, all_countries, by = c("country" = "name"))
-#TODO validate that the inner join results in correct data being pulled out of wpp
 list_country <- list_country %>% pull(country) %>% as.character
 
 rm(all_countries)
@@ -73,7 +72,6 @@ testdat_contact <- create_contact_matrices_0to80(testdat_pop, test_countries)
 
 #%% All of the POLYMOD data ---------------------
 
-#TODO how do I put this in a targets workflow? As this will be quite slow?
 
 # Save as csv files ------------------------
 
