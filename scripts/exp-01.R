@@ -114,6 +114,11 @@ rm(temp1)
 
 # Create conmats for country-years --------
 
+#%% Unit testing -----
+
+afg2015 <- wpp_age("Afghanistan", "2015")
+country_list <- c("Afghanistan")
+
 #%% Extract countries and years ----
 
 # This extracts the regions 
@@ -164,8 +169,38 @@ dat_test <- map2(.x = list_countries,
 
 # Create conmats for each country -------------------------
 
+# Unit tests
+dat <- wpp_age()
+dat <- dat %>% 
+  filter(year == 2015)
+
+all_countries <- read.csv("./raw/all-countries.csv")
+all_countries <- all_countries %>% select(name)
+
+list_country <- dat %>% 
+  distinct(country)
+
+list_country_std <- inner_join(list_country, all_countries, by = c("country" = "name"))
+
+create_country_list_from_wpp(dat)
+
+all_countries <- read_csv("./raw/all-countries.csv") %>% 
+  select(country = name)
+
+wpp_countries <- dat %>% 
+  distinct(country)
+
+list_of_countries <- inner_join(dat, all_countries, by = "country")
+list_of_countries <- list_of_countries %>% 
+  pull(country) %>% 
+  as.character
+
+list_of_countries
+
+list_countries <- create_country_list_from_wpp(dat)
+
 #%% Test for 3 ------------------------
-test_countries <- list_country[1:3]
+test_countries <- list_countries[1:3]
 
 create_pop_data <- function(country_list){
   # This function takes the list of countries,
@@ -299,3 +334,34 @@ as_tibble(conmat_list$italy$home) %>%
          .before = everything()) %>% 
   View()
 write.csv(conmat_list$italy$home, file = "home.csv")
+
+# Testing with functions in targets -----
+
+dat <- wpp_age() %>% 
+  filter(year == 2015)
+
+list_countries <- create_country_list_from_wpp(dat)
+test_countries <- list_countries[1:3]
+
+test_dat <- create_pop_data(test_countries)
+
+# Non-intuitive to have the list of countires, why can't this be saved?
+test_contact <- create_contact_matrices(test_dat, test_countries, 0, 80)
+
+save_conmat_as_csv(test_contact, "./output/")
+
+
+check_csv_equality <- function(file1, file2) {
+  # Read the CSV files into data frames
+  data1 <- read.csv(file1, stringsAsFactors = FALSE)
+  data2 <- read.csv(file2, stringsAsFactors = FALSE)
+  
+  # Check if the data frames are equal
+  if (identical(data1, data2)) {
+    print("The CSV files are identical.")
+  } else {
+    print("The CSV files are not identical.")
+  }
+}
+
+check_csv_equality("./output/Afghanistan_home_2015.csv", "./output/240320/Afghanistan_home_2015_0320.csv")
