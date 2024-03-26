@@ -53,7 +53,7 @@ create_contact_matrices <- function(data_pop, country_list, start_age = 0, end_a
   data_contact
 }
 
-save_matrices_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
+save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
   
   # This function saves the contact matrices derived from
   # extrapolate_polymod() for a list of countries and

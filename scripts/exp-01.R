@@ -315,6 +315,8 @@ subfolder_save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = F
 }
 
 save_conmat_as_csv(test_contact, path = "./output/")
+save_matrices_as_csv(testdat_contact, path = "./output/240326_subfolders", subfolder = TRUE)
+save_matrices_as_csv(testdat_contact, path = "./output")
 
 #TODO try the following two but with just one country. (lowest level)
 
@@ -403,3 +405,5 @@ check_csv_equality <- function(file1, file2) {
 }
 
 check_csv_equality("./output/Afghanistan_home_2015.csv", "./output/240320/Afghanistan_home_2015_0320.csv")
+
+check_csv_equality("./output/240326_subfolders/Afghanistan/Afghanistan_all_2015.csv", "./output/Afghanistan_all_2015.csv")
