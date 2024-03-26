@@ -391,16 +391,15 @@ test_contact <- create_contact_matrices(test_dat, test_countries, 0, 80)
 save_conmat_as_csv(test_contact, "./output/")
 
 
-check_csv_equality <- function(file1, file2) {
-  # Read the CSV files into data frames
+check_cm_equal <- function(file1, file2) {
   data1 <- read.csv(file1, stringsAsFactors = FALSE)
   data2 <- read.csv(file2, stringsAsFactors = FALSE)
   
   # Check if the data frames are equal
   if (identical(data1, data2)) {
-    print("The CSV files are identical.")
+    print("The contact matrices (csv files) are identical.")
   } else {
-    print("The CSV files are not identical.")
+    print("Warning! The contact matrices (csv files) are not identical.")
   }
 }
 
