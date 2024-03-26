@@ -43,11 +43,11 @@ create_contact_matrices <- function(data_pop, country_list, start_age = 0, end_a
   # and subsequently uses extrapolate_polymod()
   # to derive the social contact matrices
   
-  age_breaks_0_80_plus <- c(seq(start_age, end_age, by = 5), Inf)
+  age_breaks_user_defined <- c(seq(start_age, end_age, by = 5), Inf)
   
   data_contact <- map(data_pop,
                       \(x) extrapolate_polymod(x, 
-                                               age_breaks = age_breaks_0_80_plus)) %>% 
+                                               age_breaks = age_breaks_user_defined)) %>% 
     set_names(country_list)
   
   data_contact
@@ -63,7 +63,7 @@ save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
   for (country_name in names(matrix_list)) {
     country_matrices <- matrix_list[[country_name]]
     
-    # Create subfolder for each country if subfolder = TRUE
+    # Create subfolder for each country if subfolder = TRUE, else remain same
     if (subfolder) {
       folder_location <- file.path(path, country_name)
       dir_create(folder_location, recurse = TRUE)
