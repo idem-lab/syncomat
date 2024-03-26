@@ -24,19 +24,19 @@ tar_plan(
   # Create country_list
   tar_target(country_list, create_country_list_from_wpp(wpp_data)),
   
-  # Choose which countries you'd like to extract data for
-  tar_target(test_country_list, country_list[15:18]),
+  # In the following two targets,
+  # choose which countries you'd like to extract data for using the index
   
   # Create population data from list of countries
-  tar_target(data_pop, create_pop_data(test_country_list)),
+  tar_target(data_pop, create_pop_data(country_list[21:50])),
   
   # Create contact matrices
   tar_target(data_contact, 
-             create_contact_matrices(data_pop, test_country_list, 0, 80)),
+             create_contact_matrices(data_pop, country_list[21:50], 0, 80)),
   
   # Save the csv files
   tar_target(csv_output,
-             save_conmat_as_csv(data_contact, path = "./output/", subfolder = FALSE), 
+             save_conmat_as_csv(data_contact, path = "./output/240326 all", subfolder = TRUE), 
              format = "file")
   
 )
