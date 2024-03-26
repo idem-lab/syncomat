@@ -1,8 +1,8 @@
 # conmat-testing
 
 Project aims:
-1. Create csv files from a list of countries, specifically `socialmixr::wpp_countries()`
-    - Make a targets pipeline
-    - Add Zenodo DOI
-2. Pull other contact surveys to calculate contact matrices
-3. Testing and validation (always!)
+- [ ] Create csv files of calculated contact matrices from the `wpp_countries()` list in the `socialmixr` package
+    - [x] Make a targets pipeline
+    - [ ] Add Zenodo DOI
+- [ ] Pull other contact surveys (from other sources) and calculate contact matrices for these
+- Testing and validation (always!)
