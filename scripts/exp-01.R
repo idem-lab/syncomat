@@ -276,7 +276,45 @@ save_matrices_as_csv <- function(country_list, matrix_list, path = "./") {
   }
 }
 
-save_matrices_as_csv(test_countries, tdat_contact, path = "./output/")
+save_conmat_as_csv <- function(matrix_list, path = "./") {
+  
+  for (country_name in names(matrix_list)) {
+    country_matrices <- matrix_list[[country_name]]
+    
+    for (matrix_name in names(country_matrices)) {
+      matrix_data <- country_matrices[[matrix_name]]
+      file_name <- glue("{country_name}_{matrix_name}_2015.csv")
+      file_path <- file.path(path, file_name)
+      write.csv(matrix_data, file_path, row.names = TRUE)
+    }
+  }
+}
+
+# Version with subfolder option
+subfolder_save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
+  
+  for (country_name in names(matrix_list)) {
+    country_matrices <- matrix_list[[country_name]]
+    
+    # Create subfolder for each country if subfolder = TRUE, else leave path as is
+    if (subfolder) {
+      folder_location <- file.path(path, country_name)
+      dir_create(folder_location, recursive = TRUE, showWarnings = FALSE)
+    } else {
+      folder_location <- path
+    }
+    
+    # 
+    for (matrix_name in names(country_matrices)) {
+      matrix_data <- country_matrices[[matrix_name]]
+      file_name <- glue("{country_name}_{matrix_name}_2015.csv")
+      file_path <- file.path(folder_location, file_name)
+      write.csv(matrix_data, file_path, row.names = TRUE)
+    }
+  }
+}
+
+save_conmat_as_csv(test_contact, path = "./output/")
 
 #TODO try the following two but with just one country. (lowest level)
 

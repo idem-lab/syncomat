@@ -36,23 +36,6 @@ create_pop_data <- function(country_list){
   data_pop
 }
 
-create_contact_matrices_0to80 <- function(data_pop, country_list){
-  
-  # This function takes the population data and the list of countries
-  # derived from as_conmat_population()
-  # and subsequently uses extrapolate_polymod()
-  # to derive the social contact matrices
-  
-  age_breaks_0_80_plus <- c(seq(0, 80, by = 5), Inf)
-  
-  data_contact <- map(data_pop,
-                      \(x) extrapolate_polymod(x, 
-                                               age_breaks = age_breaks_0_80_plus)) %>% 
-    set_names(country_list)
-  
-  data_contact
-}
-
 create_contact_matrices <- function(data_pop, country_list, start_age = 0, end_age = 80){
   
   # This function takes the population data and the list of countries
@@ -70,19 +53,28 @@ create_contact_matrices <- function(data_pop, country_list, start_age = 0, end_a
   data_contact
 }
 
-save_conmat_as_csv <- function(matrix_list, path = "./") {
+save_matrices_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
   
   # This function saves the contact matrices derived from
   # extrapolate_polymod() for a list of countries and
   # saves them to individual csv files.
+  # Option to save to subfolders.
   
   for (country_name in names(matrix_list)) {
     country_matrices <- matrix_list[[country_name]]
     
+    # Create subfolder for each country if subfolder = TRUE
+    if (subfolder) {
+      folder_location <- file.path(path, country_name)
+      dir_create(folder_location, recurse = TRUE)
+    } else {
+      folder_location <- path
+    }
+    
     for (matrix_name in names(country_matrices)) {
       matrix_data <- country_matrices[[matrix_name]]
-      file_name <- sprintf("%s_%s_%s.csv", country_name, matrix_name, "2015")
-      file_path <- file.path(path, file_name)
+      file_name <- glue("{country_name}_{matrix_name}_2015.csv")
+      file_path <- file.path(folder_location, file_name)
       write.csv(matrix_data, file_path, row.names = TRUE)
     }
   }
