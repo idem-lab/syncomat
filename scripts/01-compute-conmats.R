@@ -75,6 +75,23 @@ testdat_contact <- create_contact_matrices_0to80(testdat_pop, test_countries)
 
 #TODO
 
+test_list <- c("Belize", "France", "Indonesia")
+
+dat_pop <- create_pop_data(test_list)
+dat_contact <- create_contact_matrices(dat_pop, test_list, 0, 80)
+save_conmat_as_csv(dat_contact, path = "./output/240327 test")
+
+check_cm_equal("./output/240327 test/Belize_home_2015.csv",
+               "./output/240326 all/Belize/Belize_home_2015.csv")
+
+check_cm_equal("./output/240327 test/France_school_2015.csv",
+               "./output/240326 all/France/France_school_2015.csv")
+
+check_cm_equal("./output/240327 test/Indonesia_all_2015.csv",
+               "./output/240326 all/Indonesia/Indonesia_all_2015.csv")
+
+check_cm_equal("./output/240327 test/Indonesia_all_2015.csv",
+               "./output/240326 all/France/France_school_2015.csv")
 
 # Save as csv files ------------------------
 
