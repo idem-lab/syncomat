@@ -3,9 +3,9 @@ country_list|stem|cf04c21909dffd0e|1f942428a5b85bca|cad5c091f2c56116|109838304||
 create_contact_matrices|function|78eb4ba036f00b93|||||||||||||||
 create_country_list_from_wpp|function|00cf47f14a6b3af4|||||||||||||||
 create_pop_data|function|1be9747421af6e37|||||||||||||||
-csv_output|stem|da7e5646cbdfced7|af683a638c5157ac|ec785f839398d2dd|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||2.47||
-data_contact|stem|bbb14fe604236869|2e8e3ae7263ee02b|27b78cac8b66d5f1|614267587||t19808.2919773385s|3cc20da0e3ad0bfd|331378|rds|local|vector|||147.81||
-data_pop|stem|3b0c6a6e297d9b2f|5700e2a822f68105|7a5893582fd2380a|2136890362||t19808.2902528782s|257ee7e58febdd4b|3891|rds|local|vector|||3.43||
+csv_output|stem|da7e5646cbdfced7|af683a638c5157ac|9864ba70379032e1|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||7.54||
+data_contact|stem|c7514c1cd502ffd2|bd67a7e5ee1678e0|0784956ac9801ec8|614267587||t19809.3801762209s|514c19744833b647|585088|rds|local|vector|||222.74||
+data_pop|stem|8baebfce2f5890c0|1bb41d127d98531c|7a5893582fd2380a|2136890362||t19809.3775974049s|671917b07621356e|6717|rds|local|vector|||5.55||
 save_conmat_as_csv|function|fcc43ea7adfd6574|||||||||||||||
 test_country_list|stem|a5745705c5b2b82c|858a5b4cfe51cdbb|2edef4638057ec1a|1092474503||t19808.252088456s|0b52c5847220add9|82|rds|local|vector|||0||
 wpp_data|stem|d8aadb82c267f908|3b00284c1198b3ff|ef46db3751d8e999|-619037820||t19808.2520803358s|612081d9dcf14b40|320621|rds|local|vector|||4.03|package ggplot2 was built under R version 4.3.3|

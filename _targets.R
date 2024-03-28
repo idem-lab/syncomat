@@ -28,11 +28,11 @@ tar_plan(
   # choose which countries you'd like to extract data for using the index
   
   # Create population data from list of countries
-  tar_target(data_pop, create_pop_data(country_list[21:50])),
+  tar_target(data_pop, create_pop_data(country_list[131:183])),
   
   # Create contact matrices
   tar_target(data_contact, 
-             create_contact_matrices(data_pop, country_list[21:50], 0, 80)),
+             create_contact_matrices(data_pop, country_list[131:183], 0, 80)),
   
   # Save the csv files
   tar_target(csv_output,
