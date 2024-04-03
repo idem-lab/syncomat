@@ -78,7 +78,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = data_contact, 
-      path = "./output/240326 all", 
+      path = "./output/240304 test", 
       subfolder = TRUE
       ), 
     format = "file")
