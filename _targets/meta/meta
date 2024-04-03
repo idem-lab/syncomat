@@ -1,11 +1,14 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-country_list|stem|cf04c21909dffd0e|1f942428a5b85bca|cad5c091f2c56116|109838304||t19808.2520879604s|fd37912b6612ce1d|1376|rds|local|vector|||0.59||
-create_contact_matrices|function|78eb4ba036f00b93|||||||||||||||
-create_country_list_from_wpp|function|00cf47f14a6b3af4|||||||||||||||
+all_countries|stem|abf4e3c8789907fd|35add69f90b721d1|92cf69c6abff19d1|105866348||t19816.0487495731s|b2766b83f88a883f|2159|rds|local|vector|||0.64||
+all_countries_path|stem|a79a46b8b4db470e|69c5e2bb8857b8cf|ef46db3751d8e999|716265529|./raw/all-countries.csv|t19801.1776290377s|78cf2b94aa0765a0|20759|file|local|vector|||2.5||
+country_list|stem|313ab7cc5727c909|9fc0a1779ad0516d|d4b1565b7e1309d5|109838304||t19816.0487506402s|af1b8cfc000ba6c1|1375|rds|local|vector|||0.02||
+create_contact_matrices|function|a834c4e0e2c9fd7e|||||||||||||||
+create_country_list_from_wpp|function|1ab7783beebd9851|||||||||||||||
 create_pop_data|function|1be9747421af6e37|||||||||||||||
-csv_output|stem|da7e5646cbdfced7|af683a638c5157ac|9864ba70379032e1|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||7.54||
-data_contact|stem|c7514c1cd502ffd2|bd67a7e5ee1678e0|0784956ac9801ec8|614267587||t19809.3801762209s|514c19744833b647|585088|rds|local|vector|||222.74||
-data_pop|stem|8baebfce2f5890c0|1bb41d127d98531c|7a5893582fd2380a|2136890362||t19809.3775974049s|671917b07621356e|6717|rds|local|vector|||5.55||
+csv_output|stem|da7e5646cbdfced7|32912e3a376ca837|de51630a8af66416|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||0.14||
+data_contact|stem|19e96c86a4ca2699|4c72396db08546d3|8250a24c786aad7c|614267587||t19816.0489507009s|03a49a86131aac7d|44641|rds|local|vector|||16.63||
+data_pop|stem|c2532da67b1aa6d7|e76ed82fd1ca1327|7711114e14050688|2136890362||t19816.0487577084s|411c308eff84cb1e|830|rds|local|vector|||0.55||
 save_conmat_as_csv|function|fcc43ea7adfd6574|||||||||||||||
+selection_of_countries|stem|5940840ff1fbafac|38be33142038d77e|1b4a9ef35bdd59cb|1929193477||t19816.0487510556s|9903306e1685fb67|94|rds|local|vector|||0||
 test_country_list|stem|a5745705c5b2b82c|858a5b4cfe51cdbb|2edef4638057ec1a|1092474503||t19808.252088456s|0b52c5847220add9|82|rds|local|vector|||0||
 wpp_data|stem|d8aadb82c267f908|3b00284c1198b3ff|ef46db3751d8e999|-619037820||t19808.2520803358s|612081d9dcf14b40|320621|rds|local|vector|||4.03|package ggplot2 was built under R version 4.3.3|
