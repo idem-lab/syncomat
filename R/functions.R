@@ -1,17 +1,14 @@
-create_country_list_from_wpp <- function(wpp_data){
-  
-  # Returns all countries in the dataset in list form.
-  
-  all_countries <- read_csv("./raw/all-countries.csv") %>% 
-    select(country = name)
+create_country_list_from_wpp <- function(wpp_data,
+                                         countries = all_countries){
   
   wpp_countries <- wpp_data %>% 
     distinct(country)
   
-  list_of_countries <- inner_join(wpp_countries, all_countries, by = "country")
+  list_of_countries <- inner_join(wpp_countries, countries, by = "country")
+  
   list_of_countries <- list_of_countries %>% 
     pull(country) %>% 
-    as.character
+    as.character()
   
   list_of_countries
 }
@@ -36,7 +33,10 @@ create_pop_data <- function(country_list){
   data_pop
 }
 
-create_contact_matrices <- function(data_pop, country_list, start_age = 0, end_age = 80){
+create_contact_matrices <- function(data_pop, 
+                                    country_list, 
+                                    start_age = 0, 
+                                    end_age = 80){
   
   # This function takes the population data and the list of countries
   # derived from as_conmat_population()
@@ -45,9 +45,13 @@ create_contact_matrices <- function(data_pop, country_list, start_age = 0, end_a
   
   age_breaks_user_defined <- c(seq(start_age, end_age, by = 5), Inf)
   
-  data_contact <- map(data_pop,
-                      \(x) extrapolate_polymod(x, 
-                                               age_breaks = age_breaks_user_defined)) %>% 
+  data_contact <- map(
+    .x = data_pop,
+    .f = \(x) extrapolate_polymod(
+      population = x, 
+      age_breaks = age_breaks_user_defined
+      )
+    ) %>% 
     set_names(country_list)
   
   data_contact
