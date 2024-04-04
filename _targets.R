@@ -53,7 +53,7 @@ tar_plan(
   # Choose which countries you'd like to extract data for using the index
   tar_target(
     selection_of_countries,
-    country_list[131:134]
+    country_list[1:183]
   ),
   
   # Create population data from list of countries
@@ -78,7 +78,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = data_contact, 
-      path = "./output/240304 test", 
+      path = "./output/240403 test", 
       subfolder = TRUE
       ), 
     format = "file")
