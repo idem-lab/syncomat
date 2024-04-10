@@ -397,9 +397,9 @@ check_cm_equal <- function(file1, file2) {
   
   # Check if the data frames are equal
   if (identical(data1, data2)) {
-    print("The contact matrices (csv files) are identical.")
+    message("The contact matrices (csv files) are identical.")
   } else {
-    print("Warning! The contact matrices (csv files) are not identical.")
+    stop("Warning! The contact matrices (csv files) are not identical.")
   }
 }
 
