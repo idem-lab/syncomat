@@ -83,3 +83,15 @@ save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
     }
   }
 }
+
+check_cm_equal <- function(file1, file2) {
+  data1 <- read.csv(file1, stringsAsFactors = FALSE)
+  data2 <- read.csv(file2, stringsAsFactors = FALSE)
+  
+  # Check if the data frames are equal
+  if (identical(data1, data2)) {
+    message("The contact matrices (csv files) are identical.")
+  } else {
+    stop("Warning! The contact matrices (csv files) are not identical.")
+  }
+}

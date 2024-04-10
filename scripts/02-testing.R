@@ -1,3 +1,5 @@
+# Superseded: Testing speed for all 183 ---------
+
 library(bench)
 library(microbenchmark)
 
@@ -18,3 +20,9 @@ test_save_csv <- microbenchmark(
 )
 
 test_save_csv
+
+# Comparing to contactdata package -------
+
+library(contactdata)
+
+fr17_all_cm <- contact_matrix("France", location = c("all"), data_source = "2017")
