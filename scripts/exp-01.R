@@ -350,6 +350,53 @@ savemat_map <- function(matrix_list, path = "./") {
   })
 }
 
+# Attempt to improve save_conmat_as_csv function ------
+
+save_matrix_as_csv <- function(country_name, 
+                               matrix_name, 
+                               matrix_data, 
+                               folder_location) {
+  
+  # This function saves the matrices derived from conmat
+  # (with conmat naming convention) into a csv file.
+  
+  file_name <- glue("{country_name}_{matrix_name}_2015.csv")
+  file_path <- file.path(folder_location, file_name)
+  write.csv(matrix_data, file_path, row.names = TRUE)
+}
+
+save_conmat_as_csv <- function(matrix_list, 
+                               path = "./", 
+                               subfolder = FALSE) {
+  
+  # This function saves the contact matrices derived from
+  # extrapolate_polymod() for a list of countries and
+  # saves them to individual csv files.
+  # Option to save to subfolders.
+  
+  # Iterate over the list of matrices using map functions
+  map2(names(matrix_list), matrix_list, ~ {
+    country_name <- .x
+    country_matrices <- .y
+    
+    # Create subfolder for each country if subfolder = TRUE, 
+    # else remain same
+    folder_location <- if (subfolder) {
+      file.path(path, country_name)
+    } else {
+      path
+    }
+    
+    dir_create(folder_location, recurse = TRUE)
+    
+    # Save each matrix to a csv file
+    map2(names(country_matrices), country_matrices, ~ 
+           save_matrix_as_csv(country_name, .x, .y, folder_location))
+  })
+}
+
+# Speed testing -----
+
 microbenchmark(
   tmap = savemat_map(tdat_contact),
   tfor = savemat_for(tdat_contact)
