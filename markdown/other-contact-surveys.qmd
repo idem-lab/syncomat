@@ -1,0 +1,14 @@
+---
+title: "Using other sources"
+subtitle: "How to load other sources to generate contact matrices"
+format: html
+---
+
+```{r}
+#| label: set-up
+#| include: FALSE
+
+library(conmat)
+library(socialmixr)
+```
+
