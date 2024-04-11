@@ -95,3 +95,10 @@ check_cm_equal <- function(file1, file2) {
     stop("Warning! The contact matrices (csv files) are not identical.")
   }
 }
+
+standardise_country_name <- function(data, var_in){
+  countrycode::countryname(glue("{data}${var_in}"),
+                           destination = "country.name.en",
+                           nomatch = NULL,
+                           warn = TRUE)
+}
