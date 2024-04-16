@@ -20,7 +20,7 @@ If you would like to adjust the age limits for the synthetic contact matrices, t
 
 The last target object `csv_output` saves these resulting contact matrices as csv files. The `path` argument allows you to specify where you would like to save these csv files. The `subfolder` argument, with its default value being `true`, allows you to save the five resulting contact matrices for each country in its own subdirectory. In other words, the five synthetic contact matrices generated (for all, home, other, school, and work environments) for one country--as an example, Algeria--is saved in its own subfolder labelled 'Algeria' within the path specified. If the `subfolder` argument was set to `false`, all contact matrices for all countries would be saved within the specified path without subdirectories.
 
-To run the analysis using your own population data: open the `_targets.R` script in the main directory, make changes to refer to your own data, and run the workflow.
+To run the analysis using your own population data: open the `_targets.R` script in the main directory, make changes to refer to your own data, and run the workflow using `tar_make()`.
 
 ## Data sources
 
@@ -29,3 +29,7 @@ The age-specific population data that forms the basis for this analysis were der
 ## Notes
 
 The contact matrices created are transposed in comparison to those discussed by [Prem, Cook, and Jit (2017)](https://doi.org/10.1371/journal.pcbi.1005697) and [Mossong et al. (2008)](https://doi.org/10.1371/journal.pmed.0050074). In other words, the rows are "age group to" and the columns are "age group from".
+
+For more information on the `conmat` package, refer to its [documentation](https://idem-lab.github.io/conmat/dev/index.html).
+
+For more information on targets workflows, refer to the [`targets` user manual](https://books.ropensci.org/targets/).
