@@ -1,8 +1,4 @@
----
-title: "conmat extension: All countries"
-bibliography: references.bib
-link-citations: true
----
+# conmat extension: All countries
 
 This workflow uses the [`conmat` package](https://github.com/idem-lab/conmat) to generate synthetic contact matrices for all countries listed in the United Nations' World Population Prospects (2017).
 
@@ -28,8 +24,8 @@ To run the analysis using your own population data: open the `_targets.R` script
 
 ## Data sources
 
-The age-specific population data that forms the basis for this analysis were derived from the `wpp_age` function in the [`socialmixr` package](https://epiforecasts.io/socialmixr/) ([@socialmixr]), which uses data from the `wpp2017` package ([@wpp2017]).
+The age-specific population data that forms the basis for this analysis were derived from the `wpp_age` function in the [`socialmixr` package](https://epiforecasts.io/socialmixr/), which uses data from the [`wpp2017` package](https://cran.r-project.org/web/packages/wpp2017/index.html).
 
 ## Notes
 
-The contact matrices created are transposed in comparison to those discussed by [@prem2017] and [@mossong2008]. In other words, the rows are "age group to" and the columns are "age group from".
+The contact matrices created are transposed in comparison to those discussed by [Prem, Cook, and Jit (2017)](https://doi.org/10.1371/journal.pcbi.1005697) and [Mossong et al. (2008)](https://doi.org/10.1371/journal.pmed.0050074). In other words, the rows are "age group to" and the columns are "age group from".
