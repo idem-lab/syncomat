@@ -375,24 +375,29 @@ save_conmat_as_csv <- function(matrix_list,
   # Option to save to subfolders.
   
   # Iterate over the list of matrices using map functions
-  map2(names(matrix_list), matrix_list, ~ {
-    country_name <- .x
-    country_matrices <- .y
-    
-    # Create subfolder for each country if subfolder = TRUE, 
-    # else remain same
-    folder_location <- if (subfolder) {
-      file.path(path, country_name)
-    } else {
-      path
+  map2(
+    .x = names(matrix_list),
+    .y = matrix_list,
+    .f = function(country_name, country_matrices) {
+      
+      # Create subfolder for each country if subfolder = TRUE,
+      # else remain same
+      folder_location <- ifelse(subfolder, 
+                                file.path(path, country_name),
+                                path)
+      
+      dir_create(folder_location, recurse = TRUE)
+      
+      # Save each matrix to a csv file
+      map2(
+        # " Functional way" of writing this out
+        .x = names(country_matrices),
+        .y = country_matrices,
+        .f = save_matrix_as_csv(country_name = country_name, 
+                                matrix_name = .x, .y, folder_location)
+      )
     }
-    
-    dir_create(folder_location, recurse = TRUE)
-    
-    # Save each matrix to a csv file
-    map2(names(country_matrices), country_matrices, ~ 
-           save_matrix_as_csv(country_name, .x, .y, folder_location))
-  })
+  )
 }
 
 # Speed testing -----
@@ -453,3 +458,71 @@ check_cm_equal <- function(file1, file2) {
 check_csv_equality("./output/Afghanistan_home_2015.csv", "./output/240320/Afghanistan_home_2015_0320.csv")
 
 check_csv_equality("./output/240326_subfolders/Afghanistan/Afghanistan_all_2015.csv", "./output/Afghanistan_all_2015.csv")
+
+# Improve standardise names function ---------------
+
+standardise_country_name <- function(list_of_countries) {
+  countrycode::countryname(
+    list_of_countries,
+    destination = "country.name.en",
+    nomatch = NULL,
+    warn = TRUE
+  )
+}
+
+# This doesn't work
+standardise_country_name <- function(data, var_in) {
+  countrycode::countryname(
+    {{ data }}${{ var_in }},
+    destination = "country.name.en",
+    nomatch = NULL,
+    warn = TRUE
+  )
+}
+
+standardise_country_name <- function(data, var_in) {
+  
+  #varname <- substitute(var_in)
+  
+  countrycode::countryname(
+    data[[var_in]],
+    destination = "country.name.en",
+    nomatch = NULL,
+    warn = TRUE
+  )
+}
+
+standardise_country_name(temp, country)
+
+# But how come the following two doesn't work?
+
+standardise_country_name <- function(data, var_in) {
+  
+  varname <- substitute(var_in)
+  
+  countrycode::countryname(
+    data$varname,
+    destination = "country.name.en",
+    nomatch = NULL,
+    warn = TRUE
+  )
+}
+
+standardise_country_name <- function(data, var_in) {
+  
+  countrycode::countryname(
+    data$var_in,
+    destination = "country.name.en",
+    nomatch = NULL,
+    warn = TRUE
+  )
+}
+
+temp_out <- standardise_country_name(temp, country)
+
+#%% Test case ------
+
+temp <- dat %>% 
+  filter(country %in% country_list)
+
+temp$std_country <- standardise_country_name(temp$country)

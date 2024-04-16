@@ -50,7 +50,8 @@ tar_plan(
     ),
   
   # USER SELECTION - In the following target:
-  # Choose which countries you'd like to extract data for using the index
+  # Choose which countries you'd like to create 
+  # contact matrices for using the index
   tar_target(
     selection_of_countries,
     country_list[1:183]

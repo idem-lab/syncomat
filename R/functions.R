@@ -75,6 +75,7 @@ save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
       folder_location <- path
     }
     
+    
     for (matrix_name in names(country_matrices)) {
       matrix_data <- country_matrices[[matrix_name]]
       file_name <- glue("{country_name}_{matrix_name}_2015.csv")
@@ -96,9 +97,11 @@ check_cm_equal <- function(file1, file2) {
   }
 }
 
-standardise_country_name <- function(data, var_in){
-  countrycode::countryname(glue("{data}${var_in}"),
-                           destination = "country.name.en",
-                           nomatch = NULL,
-                           warn = TRUE)
+standardise_country_name <- function(list_of_countries) {
+  countrycode::countryname(
+    list_of_countries,
+    destination = "country.name.en",
+    nomatch = NULL,
+    warn = TRUE
+  )
 }
