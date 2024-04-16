@@ -4,13 +4,13 @@ This workflow extends the [`conmat` package](https://github.com/idem-lab/conmat)
 
 ## Workflow
 
-This analysis uses a [`targets` workflow](https://books.ropensci.org/targets/). This section will run through each target object.
+This analysis uses a [`targets` workflow](https://books.ropensci.org/targets/). This section will explain each target object and therefore explain each part of the analysis.
 
-We first obtain the age-specific population data we would like to generate synthetic contact matrices for. In our instance we get this data from the `wpp_age` function from the `socialmixr` package.
+We first obtain the age-specific population data we would like to generate synthetic contact matrices for. In this instance, we obtain this population data using the `wpp_age()` function from the `socialmixr` package.
 
 The next step standardises the country names. A point to note is that some country names have changed as this data is from the 2017 edition of the World Population Prospects. In this instance we use an existing list of standardised country names saved as a csv file in the project directory.
 
-We then select data for which the country names are in the standardised list. The population data obtained from the `wpp_age` function includes global and regional levels in addition to the country level. As we are only interested in country-level contact matrices, in this step we only select countries.
+We then subset population data for which the country names are in the standardised list. The population data obtained from `wpp_age()` includes global and regional population data in addition to country-level population data. As we are only interested in country-level contact matrices, in this step we only select the population data of countries.
 
 The user can then select which countries they would like to create synthetic contact matrices for in the `selection_of_countries` target object. Creating contact matrices for all 183 countries at once (in other words, running the worflow as-is) takes about 13 minutes.
 
@@ -18,7 +18,7 @@ The next two target objects `data_pop` and `data_contact` uses the `as_conmat_po
 
 If you would like to adjust the age limits for the synthetic contact matrices, this can be done by changing the `start_age` and `end_age` arguments in the `data_contact` target object.
 
-The last target object `csv_output` saves these resulting contact matrices as csv files. The `path` argument allows you to specify where you would like to save these csv files. The `subfolder` argument, with its default value being `true`, allows you to save the five resulting contact matrices for each country in its own subdirectory. In other words, the five synthetic contact matrices generated (for all, home, other, school, and work environments) for one country--as an example, Algeria--is saved in its own subfolder labelled 'Algeria' within the path specified. If the `subfolder` argument was set to `false`, all contact matrices for all countries would be saved within the specified path without subdirectories.
+The last target object `csv_output` saves these resulting contact matrices as csv files. The `path` argument allows you to specify where you would like to save these csv files. The `subfolder` argument, with its default value being `true`, allows you to save the five resulting contact matrices for each country in its own subdirectory. In other words, the five synthetic contact matrices generated (for the environments: all, home, other, school, and work) for one country--as an example, Algeria--is saved in its own subfolder labelled 'Algeria' within the path specified. If the `subfolder` argument were set to `false`, all contact matrices for all countries would be saved within the specified path without subdirectories; in other words, all csv files would be saved in the one folder.
 
 To run the analysis using your own population data: open the `_targets.R` script in the main directory, make changes to refer to your own data, and run the workflow.
 
