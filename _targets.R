@@ -33,13 +33,12 @@ tar_plan(
   
   tar_file(
     all_countries_path,
-    "./raw/all-countries.csv"
+    "./data/manually-checked-wpp-country-names.csv"
     ),
   
   tar_target(
     all_countries,
-    read_csv(all_countries_path) %>% 
-      select(country = name)
+    read_csv(all_countries_path)
   ),
   
   # Create country_list
@@ -54,7 +53,7 @@ tar_plan(
   # contact matrices for using the index
   tar_target(
     selection_of_countries,
-    country_list[1:3]
+    country_list[1:202]
   ),
   
   # Create population data from list of countries
@@ -79,7 +78,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = data_contact, 
-      path = "./output/240403 test", 
+      path = "./output/240417 all regions main", 
       subfolder = TRUE
       ), 
     format = "file")

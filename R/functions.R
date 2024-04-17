@@ -1,6 +1,10 @@
 create_country_list_from_wpp <- function(wpp_data,
                                          countries = all_countries){
   
+  # This function selects only countries from the WPP data.
+  # `all_countries` is from a csv file where I manually checked the
+  # country names. Politics is hard.
+  
   wpp_countries <- wpp_data %>% 
     distinct(country)
   
@@ -17,6 +21,7 @@ standardise_country_names <- function(data,
                                      column_name, 
                                      destination = "country.name.en") {
   
+  # Not used in this branch; too hard, did manually.
   # This function takes country names from age-specific population data
   # and standardises the country names according to current UN standards
   # (utilising the countrycode package). Uses fuzzy matching, so slightly
