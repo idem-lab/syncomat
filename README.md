@@ -8,7 +8,7 @@ This analysis uses a [`targets` workflow](https://books.ropensci.org/targets/). 
 
 We first obtain the age-specific population data we would like to generate synthetic contact matrices for. In this instance, we obtain this population data using the `wpp_age()` function from the `socialmixr` package.
 
-The next step standardises the country names. A point to note is that some country names have changed as this data is from the 2017 edition of the World Population Prospects. In this instance we use an existing list of standardised country names saved as a csv file in the project directory.
+The next step standardises the country names. A point to note is that some country names have changed as this data is from the 2017 edition of the World Population Prospects. In this instance we use an existing list of standardised country names saved as a csv file in the project directory (`"data/all_countries.csv"`).
 
 We then subset population data for which the country names are in the standardised list. The population data obtained from `wpp_age()` includes global and regional population data in addition to country-level population data. As we are only interested in country-level contact matrices, in this step we only select the population data of countries.
 

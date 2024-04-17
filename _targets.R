@@ -31,9 +31,12 @@ tar_plan(
   # Extract all data from wpp_age()
   tar_target(wpp_data, wpp_age()),
   
+  # Load a standardised csv.
+  # Source of the csv file: UN's ISO 3166 from 2020
+  # https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv
   tar_file(
     all_countries_path,
-    "./data/manually-checked-wpp-country-names.csv"
+    "./data/all_countries.csv"
     ),
   
   tar_target(
@@ -41,7 +44,8 @@ tar_plan(
     read_csv(all_countries_path)
   ),
   
-  # Create country_list
+  # From wpp data, select only countries which name
+  # has been validated against above csv.
   tar_target(
     country_list, 
     create_country_list_from_wpp(wpp_data = wpp_data, 
