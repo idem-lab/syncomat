@@ -13,6 +13,26 @@ create_country_list_from_wpp <- function(wpp_data,
   list_of_countries
 }
 
+standardise_country_name <- function(data, 
+                                     column_name, 
+                                     destination = "country.name.en") {
+  
+  # This function takes country names from age-specific population data
+  # and standardises the country names according to current UN standards
+  # (utilising the countrycode package). Uses fuzzy matching, so slightly
+  # off names are also standardised. 
+  # Outputs to a new column called std_country.
+  
+  data$std_country <- countrycode::countryname(
+    data[[column_name]],
+    destination = destination,
+    nomatch = NA,
+    warn = TRUE
+  )
+  
+  return(data)
+}
+
 create_pop_data <- function(country_list){
   
   # This function takes the list of countries,
@@ -24,7 +44,7 @@ create_pop_data <- function(country_list){
               \(x) wpp_age(x, "2015")) %>% 
     set_names(country_list)
   
-  data_pop <- map(data, 
+  data_pop <- map(data,
                   \(x) as_conmat_population(x, 
                                             age = lower.age.limit, 
                                             population = population)) %>% 

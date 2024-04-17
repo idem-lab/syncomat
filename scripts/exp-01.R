@@ -465,10 +465,13 @@ standardise_country_name <- function(list_of_countries) {
   countrycode::countryname(
     list_of_countries,
     destination = "country.name.en",
-    nomatch = NULL,
+    nomatch = NA,
     warn = TRUE
   )
 }
+
+# At wpp_data
+wpp_data$std_country <- standardise_country_name(wpp_data$country)
 
 # This doesn't work
 standardise_country_name <- function(data, var_in) {
@@ -480,19 +483,57 @@ standardise_country_name <- function(data, var_in) {
   )
 }
 
-standardise_country_name <- function(data, var_in) {
+standardise_country_names <- function(data, 
+                                     column_name, 
+                                     destination = "country.name.en") {
   
-  #varname <- substitute(var_in)
+  data$std_country <- countrycode::countryname(
+      data[[column_name]],
+      destination = destination,
+      nomatch = NA,
+      warn = TRUE
+    )
   
-  countrycode::countryname(
-    data[[var_in]],
-    destination = "country.name.en",
-    nomatch = NULL,
-    warn = TRUE
-  )
+  data <- 
+    data %>%
+    filter(!is.na(std_country)) %>% 
+    select(std_country, lower.age.limit, year, population) %>% 
+    rename(country_names = std_country)
+
+  return(data)
 }
 
-standardise_country_name(temp, country)
+
+library(countrycode)
+
+standardize_country_names <- function(data, column_name, destination = "country.name.en") {
+  data$standardised_country_names <- countryname(data[[column_name]], 
+                                                 destination = destination,
+                                                 nomatch = NA, 
+                                                 warn = TRUE)
+  return(data)
+}
+
+
+temp <- wpp_data
+temp2 <- standardise_country_name(temp, country)
+
+#%% Non-function approaches -----
+temp <- wpp_data
+
+# The following works
+temp$std_country <- countryname(temp$country, 
+                                destination = "country.name.en",
+                                nomatch = NA, 
+                                warn = TRUE)
+
+temp <- wpp_data
+
+temp %>% 
+  mutate(std_country = countryname(.,
+                                   destination = "country.name.en",
+                                   nomatch = NA, 
+                                   warn = TRUE))
 
 # But how come the following two doesn't work?
 
