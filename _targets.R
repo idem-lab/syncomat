@@ -55,7 +55,7 @@ tar_plan(
   # contact matrices for using the index
   tar_target(
     selection_of_countries,
-    list_of_data[1:183]
+    list_of_data[1:201]
   ),
   
   # Create conmat's population data
@@ -79,7 +79,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = data_contact_matrices, 
-      path = "./output/240417 test", 
+      path = "./output/240417 all countries output", 
       subfolder = TRUE
       ), 
     format = "file")
