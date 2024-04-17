@@ -1,59 +1,47 @@
-create_country_list_from_wpp <- function(wpp_data,
-                                         countries = all_countries){
+standardise_country_names <- function(data,
+                                      column_name,
+                                      destination = "country.name.en"
+                                                 ) {
   
-  wpp_countries <- wpp_data %>% 
-    distinct(country)
-  
-  list_of_countries <- inner_join(wpp_countries, countries, by = "country")
-  
-  list_of_countries <- list_of_countries %>% 
-    pull(country) %>% 
-    as.character()
-  
-  list_of_countries
-}
-
-standardise_country_name <- function(data, 
-                                     column_name, 
-                                     destination = "country.name.en") {
-  
+  # Depends on the countrycode package.
   # This function takes country names from age-specific population data
   # and standardises the country names according to current UN standards
-  # (utilising the countrycode package). Uses fuzzy matching, so slightly
-  # off names are also standardised. 
-  # Outputs to a new column called std_country.
+  # Uses fuzzy matching, so slightly-off names are also standardised. 
+  # Subsequently, only the country names are selected.
+  # Returns data frame with a new column called std_country.
   
-  data$std_country <- countrycode::countryname(
+  data$country_names <- countrycode::countryname(
     data[[column_name]],
     destination = destination,
     nomatch = NA,
     warn = TRUE
   )
   
-  return(data)
+  data_out <- data %>% 
+    filter(!is.na(country_names)) %>% 
+    select(country_names, lower.age.limit, year, population) %>% 
+    rename(lower_age_limit = lower.age.limit)
+  
+  return(data_out)
 }
 
-create_pop_data <- function(country_list){
+create_population_data <- function(in_data){
   
   # This function takes the list of countries,
-  # plugs it into wpp_age() 
-  # and subsequently as_conmat_population()
-  # to derive the population data.
+  # and plugs it into as_conmat_population()
+  # to create the population data.
   
-  data <- map(country_list, 
-              \(x) wpp_age(x, "2015")) %>% 
-    set_names(country_list)
+  population_data <- map(
+    .x = in_data,
+    .f = \(x) as_conmat_population(
+      data = x,
+      age = lower_age_limit, 
+      population = population))
   
-  data_pop <- map(data,
-                  \(x) as_conmat_population(x, 
-                                            age = lower.age.limit, 
-                                            population = population)) %>% 
-    set_names(country_list)
-  
-  data_pop
+  return(population_data)
 }
 
-create_contact_matrices <- function(data_pop, 
+create_contact_matrices <- function(population_data, 
                                     country_list, 
                                     start_age = 0, 
                                     end_age = 80){
@@ -65,16 +53,15 @@ create_contact_matrices <- function(data_pop,
   
   age_breaks_user_defined <- c(seq(start_age, end_age, by = 5), Inf)
   
-  data_contact <- map(
-    .x = data_pop,
+  contact_data <- map(
+    .x = population_data,
     .f = \(x) extrapolate_polymod(
       population = x, 
       age_breaks = age_breaks_user_defined
       )
-    ) %>% 
-    set_names(country_list)
+    )
   
-  data_contact
+  return(contact_data)
 }
 
 save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
@@ -115,13 +102,4 @@ check_cm_equal <- function(file1, file2) {
   } else {
     stop("Warning! The contact matrices (csv files) are not identical.")
   }
-}
-
-standardise_country_name <- function(list_of_countries) {
-  countrycode::countryname(
-    list_of_countries,
-    destination = "country.name.en",
-    nomatch = NULL,
-    warn = TRUE
-  )
 }

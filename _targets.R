@@ -6,6 +6,7 @@ library(tarchetypes)
 tar_option_set(
   packages = c("conmat", 
                "socialmixr", 
+               "countrycode",
                "mgcv",
                "tibble", 
                "readr", 
@@ -28,46 +29,36 @@ source("R/functions.R")
 
 tar_plan(
   
-  # Extract all data from wpp_age()
-  tar_target(wpp_data, wpp_age()),
-  
-  tar_file(
-    all_countries_path,
-    "./raw/all-countries.csv"
-    ),
-  
   tar_target(
-    all_countries,
-    read_csv(all_countries_path) %>% 
-      select(country = name)
+    in_data_wpp,
+    wpp_age(years = 2015)
   ),
   
-  # Create country_list
   tar_target(
-    country_list, 
-    create_country_list_from_wpp(wpp_data = wpp_data, 
-                                 countries = all_countries)
-    ),
+    standardised_wpp_data,
+    standardise_country_names(
+      in_data_wpp,
+      column_name = "country")),
   
   # USER SELECTION - In the following target:
   # Choose which countries you'd like to create 
   # contact matrices for using the index
   tar_target(
     selection_of_countries,
-    country_list[1:183]
+    standardised_wpp_data[1:3,]
   ),
   
   # Create population data from list of countries
   tar_target(
-    data_pop, 
-    create_pop_data(selection_of_countries)
+    population_data, 
+    create_population_data(selection_of_countries)
     ),
   
   # Create contact matrices
   tar_target(
-    data_contact, 
+    data_contact_matrices, 
     create_contact_matrices(
-      data_pop = data_pop,
+      data_pop = population_data,
       country_list = selection_of_countries,
       start_age = 0,
       end_age = 80
@@ -78,11 +69,10 @@ tar_plan(
   tar_target(
     csv_output,
     save_conmat_as_csv(
-      matrix_list = data_contact, 
+      matrix_list = data_contact_matrices, 
       path = "./output/240403 test", 
       subfolder = TRUE
       ), 
     format = "file")
              
-  
 )
