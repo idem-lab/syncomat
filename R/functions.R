@@ -1,7 +1,7 @@
 standardise_country_names <- function(data,
                                       column_name,
                                       destination = "country.name.en"
-                                                 ) {
+                                      ) {
   
   # Depends on the countrycode package.
   # This function takes country names from age-specific population data
@@ -25,14 +25,14 @@ standardise_country_names <- function(data,
   return(data_out)
 }
 
-create_population_data <- function(in_data){
+create_population_data <- function(in_list_of_data){
   
   # This function takes the list of countries,
   # and plugs it into as_conmat_population()
   # to create the population data.
   
   population_data <- map(
-    .x = in_data,
+    .x = in_list_of_data,
     .f = \(x) as_conmat_population(
       data = x,
       age = lower_age_limit, 
@@ -41,13 +41,11 @@ create_population_data <- function(in_data){
   return(population_data)
 }
 
-create_contact_matrices <- function(population_data, 
-                                    country_list, 
+create_contact_matrices <- function(population_data,
                                     start_age = 0, 
                                     end_age = 80){
   
-  # This function takes the population data and the list of countries
-  # derived from as_conmat_population()
+  # This function takes the population data
   # and subsequently uses extrapolate_polymod()
   # to derive the social contact matrices
   
@@ -64,7 +62,9 @@ create_contact_matrices <- function(population_data,
   return(contact_data)
 }
 
-save_conmat_as_csv <- function(matrix_list, path = "./", subfolder = FALSE) {
+save_conmat_as_csv <- function(matrix_list, 
+                               path = "./", 
+                               subfolder = FALSE) {
   
   # This function saves the contact matrices derived from
   # extrapolate_polymod() for a list of countries and

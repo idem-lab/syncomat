@@ -29,26 +29,36 @@ source("R/functions.R")
 
 tar_plan(
   
+  # Loads data from wpp_age() function
   tar_target(
     in_data_wpp,
     wpp_age(years = 2015)
   ),
   
+  # Standardises the country names
   tar_target(
     standardised_wpp_data,
     standardise_country_names(
       in_data_wpp,
       column_name = "country")),
   
+  # Creates a list (required for input into the next workflow)
+  tar_target(
+    list_of_data,
+    split(
+      standardised_wpp_data, 
+      standardised_wpp_data$country_names)
+  ),
+  
   # USER SELECTION - In the following target:
   # Choose which countries you'd like to create 
   # contact matrices for using the index
   tar_target(
     selection_of_countries,
-    standardised_wpp_data[1:3,]
+    list_of_data[1:183]
   ),
   
-  # Create population data from list of countries
+  # Create conmat's population data
   tar_target(
     population_data, 
     create_population_data(selection_of_countries)
@@ -58,8 +68,7 @@ tar_plan(
   tar_target(
     data_contact_matrices, 
     create_contact_matrices(
-      data_pop = population_data,
-      country_list = selection_of_countries,
+      population_data = population_data,
       start_age = 0,
       end_age = 80
     )
@@ -70,7 +79,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = data_contact_matrices, 
-      path = "./output/240403 test", 
+      path = "./output/240417 test", 
       subfolder = TRUE
       ), 
     format = "file")
