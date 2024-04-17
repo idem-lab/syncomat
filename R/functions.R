@@ -13,7 +13,7 @@ create_country_list_from_wpp <- function(wpp_data,
   list_of_countries
 }
 
-standardise_country_name <- function(data, 
+standardise_country_names <- function(data, 
                                      column_name, 
                                      destination = "country.name.en") {
   
@@ -40,14 +40,17 @@ create_pop_data <- function(country_list){
   # and subsequently as_conmat_population()
   # to derive the population data.
   
-  data <- map(country_list, 
-              \(x) wpp_age(x, "2015")) %>% 
+  data <- map(
+    .x = country_list,
+    .f = \(x) wpp_age(x, "2015")) %>% 
     set_names(country_list)
   
-  data_pop <- map(data,
-                  \(x) as_conmat_population(x, 
-                                            age = lower.age.limit, 
-                                            population = population)) %>% 
+  data_pop <- map(
+    .x = data,
+    .f = \(x) as_conmat_population(
+      x,
+      age = lower.age.limit, 
+      population = population)) %>% 
     set_names(country_list)
   
   data_pop
@@ -115,13 +118,4 @@ check_cm_equal <- function(file1, file2) {
   } else {
     stop("Warning! The contact matrices (csv files) are not identical.")
   }
-}
-
-standardise_country_name <- function(list_of_countries) {
-  countrycode::countryname(
-    list_of_countries,
-    destination = "country.name.en",
-    nomatch = NULL,
-    warn = TRUE
-  )
 }

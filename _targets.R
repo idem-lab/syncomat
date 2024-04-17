@@ -54,7 +54,7 @@ tar_plan(
   # contact matrices for using the index
   tar_target(
     selection_of_countries,
-    country_list[1:183]
+    country_list[1:3]
   ),
   
   # Create population data from list of countries
