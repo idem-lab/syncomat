@@ -35,11 +35,22 @@ tar_plan(
     wpp_age(years = 2015)
   ),
   
+  # Clean unique issues in wpp_age() data
+  tar_target(
+    cleaned_wpp,
+    in_data_wpp %>% 
+      mutate(country = case_when(
+        country == "China, Hong Kong SAR" ~ "Hong Kong",
+        country == "China, Taiwan province of China" ~ "Taiwan, Province of China",
+        .default = country
+      ))
+  ),
+  
   # Standardises the country names
   tar_target(
     standardised_wpp_data,
     standardise_country_names(
-      in_data_wpp,
+      cleaned_wpp,
       column_name = "country")),
   
   # Creates a list (required for input into the next workflow)
