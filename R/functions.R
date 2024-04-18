@@ -6,6 +6,11 @@ create_country_list_from_wpp <- function(wpp_data,
   # country names. Politics is hard.
   
   wpp_countries <- wpp_data %>% 
+    mutate(country = case_when(
+      country == "China, Hong Kong SAR" ~ "Hong Kong",
+      country == "China, Taiwan province of China" ~ "Taiwan, Province of China",
+      .default = country
+    )) %>% 
     distinct(country)
   
   list_of_countries <- inner_join(wpp_countries, countries, by = "country")

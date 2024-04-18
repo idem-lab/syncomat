@@ -7,6 +7,8 @@ tar_option_set(
   packages = c("conmat", 
                "socialmixr", 
                "mgcv",
+               "tidyverse",
+               "magrittr",
                "tibble", 
                "readr", 
                "dplyr", 
@@ -29,7 +31,9 @@ source("R/functions.R")
 tar_plan(
   
   # Extract all data from wpp_age()
-  tar_target(wpp_data, wpp_age()),
+  tar_target(
+    wpp_data,
+    wpp_age(years = "2015")),
   
   # Load a standardised csv.
   # Source of the csv file: UN's ISO 3166 from 2020
@@ -60,6 +64,21 @@ tar_plan(
     selection_of_countries,
     country_list[1:183]
   ),
+  
+  tar_target(
+    cleaned_wpp,
+    wpp_data %>% 
+      mutate(country = case_when(
+        country == "China, Hong Kong SAR" ~ "Hong Kong",
+        country == "China, Taiwan province of China" ~ "Taiwan, Province of China",
+        .default = country
+      ))
+  ),
+  
+  data <- map(
+    .x = selection_of_countries,
+    .f = \(x) wpp_age(x, "2015")) %>% 
+    set_names(country_list),
   
   # Create population data from list of countries
   tar_target(
