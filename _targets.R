@@ -36,12 +36,13 @@ tar_plan(
   # https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv
   tar_file(
     all_countries_path,
-    "./data/all_countries.csv"
+    "./data/all-countries.csv"
     ),
   
   tar_target(
     all_countries,
-    read_csv(all_countries_path)
+    read_csv(all_countries_path) %>% 
+      rename(country = name)
   ),
   
   # From wpp data, select only countries which name

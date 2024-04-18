@@ -1,16 +1,17 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-all_countries|stem|abf4e3c8789907fd|35add69f90b721d1|92cf69c6abff19d1|105866348||t19816.0487495731s|b2766b83f88a883f|2159|rds|local|vector|||0.64||
-all_countries_path|stem|a79a46b8b4db470e|69c5e2bb8857b8cf|ef46db3751d8e999|716265529|./raw/all-countries.csv|t19801.1776290377s|78cf2b94aa0765a0|20759|file|local|vector|||2.5||
+all_countries|stem|2bd4eff13648f734|0f5adcee81fb6f27|92cf69c6abff19d1|105866348||t19831.075690436s|873a9bf88490247f|7143|rds|local|vector|||0.52||
+all_countries_path|stem|a79a46b8b4db470e|d448bb2f0df81389|ef46db3751d8e999|716265529|./data/all-countries.csv|t19801.1776290377s|78cf2b94aa0765a0|20759|file|local|vector|||2.4||
 check_cm_equal|function|2f51821517f412d7|||||||||||||||
-country_list|stem|313ab7cc5727c909|9fc0a1779ad0516d|d4b1565b7e1309d5|109838304||t19816.0487506402s|af1b8cfc000ba6c1|1375|rds|local|vector|||0.02||
+country_list|stem|313ab7cc5727c909|9fc0a1779ad0516d|0ec3b9dfbe6d5770|109838304||t19831.076162549s|af1b8cfc000ba6c1|1375|rds|local|vector|||0.01||
 create_contact_matrices|function|a834c4e0e2c9fd7e|||||||||||||||
 create_country_list_from_wpp|function|1ab7783beebd9851|||||||||||||||
-create_pop_data|function|1be9747421af6e37|||||||||||||||
+create_pop_data|function|6719d4b6af4f669a|||||||||||||||
 csv_output|stem|da7e5646cbdfced7|f49be1695dc452ff|019d0be4f601b7b4|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||7.69||
 data_contact|stem|12b947111b5a8df1|4c72396db08546d3|8442d6983c9f54d1|614267587||t19817.1672205806s|89bdc2fa0d5d29fd|2018153|rds|local|vector|||763.08||
-data_pop|stem|5fc862baf4674fd2|e76ed82fd1ca1327|554b89e597af24bd|2136890362||t19830.3532355039s|9bc7f5813a30926a|690|rds|local|vector|||0.65||
+data_pop|stem|5fc862baf4674fd2|e76ed82fd1ca1327|47e82e6bcf51a5fd|2136890362||t19830.3532355039s||690|rds|local|vector|||14.14||ℹ In index 35.ℹ With name Channel Islands.Caused by error Could not evaluate cli  expression var_lab.Caused by error object var_lab not found
 save_conmat_as_csv|function|fcc43ea7adfd6574|||||||||||||||
-selection_of_countries|stem|57905913a854834c|01cfdabb19969005|1b4a9ef35bdd59cb|1929193477||t19830.3532265848s|dff9495c51b724c1|77|rds|local|vector|||0||
+selection_of_countries|stem|7f8a9d7e6aa25754|f2505115cf7489d1|281f2ca6674601c1|1929193477||t19830.4282363513s|88c84b542f693fd5|1573|rds|local|vector|||0||
 standardise_country_name|function|d879417a683bc9f7|||||||||||||||
+standardise_country_names|function|1dabe24f92f9634f|||||||||||||||
 test_country_list|stem|a5745705c5b2b82c|858a5b4cfe51cdbb|2edef4638057ec1a|1092474503||t19808.252088456s|0b52c5847220add9|82|rds|local|vector|||0||
 wpp_data|stem|d8aadb82c267f908|3b00284c1198b3ff|ef46db3751d8e999|-619037820||t19808.2520803358s|612081d9dcf14b40|320621|rds|local|vector|||4.03|package ggplot2 was built under R version 4.3.3|
