@@ -7,7 +7,6 @@ tar_option_set(
   packages = c("conmat", 
                "socialmixr", 
                "mgcv",
-               "tidyverse",
                "magrittr",
                "tibble", 
                "readr", 
@@ -40,12 +39,12 @@ tar_plan(
   # https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/blob/master/all/all.csv
   tar_file(
     all_countries_path,
-    "./data/all-countries.csv"
+    "https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv"
     ),
   
   tar_target(
     all_countries,
-    read_csv(all_countries_path) %>% 
+    read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv") %>% 
       rename(country = name)
   ),
   
