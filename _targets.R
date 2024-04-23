@@ -38,7 +38,7 @@ tar_plan(
   # Clean unique issues in wpp_age() data
   tar_target(
     cleaned_wpp,
-    in_data_wpp %>% 
+    in_data_wpp %>%
       mutate(country = case_when(
         country == "China, Hong Kong SAR" ~ "Hong Kong",
         country == "China, Taiwan province of China" ~ "Taiwan, Province of China",
