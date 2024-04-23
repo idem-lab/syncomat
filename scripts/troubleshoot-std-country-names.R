@@ -13,6 +13,12 @@ write_csv(std_wpp_list, "./data/std_wpp_country_names.csv")
 write_csv(prem17, "./data/prem_2017_country_names.csv")
 write_csv(un_countries, "./data/un_country_names.csv")
 
+# Try this out
+
+library(tidyverse)
+library(targets)
+library(tarchetypes)
+
 wpp_countrynames <- read_csv("./data/wpp_country_names.csv") %>% 
   as_tibble()
 un_countrynames <- read_csv("./data/un_country_names.csv") %>% 
@@ -43,4 +49,4 @@ fuzz <- fuzz %>%
   mutate(country = case_when(
     country == "Congo" & std_country == "Togo" ~ NA,
   )
-  )
+)
