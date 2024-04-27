@@ -1,3 +1,6 @@
+# Ignore everything in this folder
 /*
+
+# Except for the following
 !.gitignore
 !/240427 all countries output/
