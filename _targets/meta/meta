@@ -2,16 +2,25 @@ name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iterat
 all_countries|stem|2bd4eff13648f734|0f5adcee81fb6f27|92cf69c6abff19d1|105866348||t19831.075690436s|873a9bf88490247f|7143|rds|local|vector|||0.52||
 all_countries_path|stem|a79a46b8b4db470e|d448bb2f0df81389|ef46db3751d8e999|716265529|./data/all-countries.csv|t19801.1776290377s|78cf2b94aa0765a0|20759|file|local|vector|||2.4||
 check_cm_equal|function|2f51821517f412d7|||||||||||||||
-country_list|stem|313ab7cc5727c909|9fc0a1779ad0516d|0ec3b9dfbe6d5770|109838304||t19831.076162549s|af1b8cfc000ba6c1|1375|rds|local|vector|||0.01||
-create_contact_matrices|function|a834c4e0e2c9fd7e|||||||||||||||
+cleaned_wpp|stem|ea6423c24e78d6ed|ee079a1090057a33|9f773a38639a2afc|-1474705768||t19836.1621634s|a46a583c8b623d9f|25986|rds|local|vector|||0||
+country_list|stem|313ab7cc5727c909|9fc0a1779ad0516d|d4b1565b7e1309d5|109838304||t19816.0487506402s|af1b8cfc000ba6c1|1375|rds|local|vector|||0.02||
+create_contact_matrices|function|bdc31d94894c5b80|||||||||||||||
 create_country_list_from_wpp|function|1ab7783beebd9851|||||||||||||||
-create_pop_data|function|6719d4b6af4f669a|||||||||||||||
-csv_output|stem|da7e5646cbdfced7|f00789ca9a3bbfe3|019d0be4f601b7b4|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||12.11||
+create_pop_data|function|1be9747421af6e37|||||||||||||||
+create_population_data|function|25a711e7c592b655|||||||||||||||
+csv_output|stem|da7e5646cbdfced7|680b418c74e71776|2c77f7b4d281e8f7|1627044349||t0s|f4066a65ff755f48|0|file|local|vector|||0.12||
 data_contact|stem|12b947111b5a8df1|4c72396db08546d3|8442d6983c9f54d1|614267587||t19817.1672205806s|89bdc2fa0d5d29fd|2018153|rds|local|vector|||763.08||
-data_pop|stem|caf320acc8ad0c90|e76ed82fd1ca1327|080fb49e29206851|2136890362||t19831.136614426s|db682607611f60c4|22128|rds|local|vector|||12.71||
+data_contact_matrices|stem|3e5af9cabbd67aa2|cfc4186be4f95bde|8ff5a022822dd72b|1613466567||t19840.4619569548s|24ab79e024081927|33680|rds|local|vector|||12.19||
+data_pop|stem|caf320acc8ad0c90|e76ed82fd1ca1327|b1bf0351eddd530b|2136890362||t19817.158385959s|db682607611f60c4|22128|rds|local|vector|||29.42||
+excluded_names|stem|b43db66e428fc6e1|fdda39e875aa366a|03aecf0f7789ee93|-1218699531||t19840.4618152362s|ab391a7f8bcafba3|473|rds|local|vector|||0.02||
+in_data_wpp|stem|c70bd5251e036eba|4d22f5cd8ef773a5|ef46db3751d8e999|-1897941176||t19830.3401865701s|f570e09d2eab8bfd|25963|rds|local|vector|||3.86||
+list_of_data|stem|008c9c2ff57dbe0f|63f2b69482533d95|03aecf0f7789ee93|1765576233||t19840.4608950387s|db7987ff08e133f0|38408|rds|local|vector|||0.02||
+population_data|stem|e33b84ef90d5fc7b|a3ae136d7e0b94b4|aa183490f8577835|-1653547989||t19840.461545098s|6d3451f02dac1ea9|728|rds|local|vector|||0||
 save_conmat_as_csv|function|fcc43ea7adfd6574|||||||||||||||
-selection_of_countries|stem|313ab7cc5727c909|9eeccb982a578b45|1b4a9ef35bdd59cb|1929193477||t19831.1364667387s|af1b8cfc000ba6c1|1375|rds|local|vector|||0||
-standardise_country_name|function|d879417a683bc9f7|||||||||||||||
-standardise_country_names|function|1dabe24f92f9634f|||||||||||||||
+selection_of_countries|stem|8d153522e0954466|39c954debfb39afc|33b6ea34f90b6672|1929193477||t19840.4613200548s|982cb2262d0bfcde|843|rds|local|vector|||0||
+standardise_and_select_country_names|function|ab861066eada1133|||||||||||||||
+standardise_country_name|function|1dabe24f92f9634f|||||||||||||||
+standardise_country_names|function|7863f3e1a409d56e|||||||||||||||
+standardised_wpp_data|stem|287d60caf8773e6c|7537aca5e8e6f5b7|e04e33e34ee6995c|563119464||t19840.4608942377s|41cb6c9fdecf3615|27317|rds|local|vector|||0.12|Some values were not matched unambiguously AFRICA, ASIA, AustraliaNew Zealand, Caribbean, Central America, Central Asia, Eastern Africa, Eastern Asia, Eastern Europe, EUROPE, Highincome countries, LATIN AMERICA AND THE CARIBBEAN, Least developed countries, Less developed regions, Less developed regions, excluding least developed countries, Lowincome countries, Lowermiddleincome countries, Melanesia, Micronesia, Middleincome countries, Middle Africa, More developed regions, Northern Africa, NORTHERN AMERICA, Northern Europe, OCEANIA, Polynesia, SouthCentral Asia, SouthEastern Asia, South America, Southern Africa, Southern Asia, Southern Europe, SubSaharan Africa, Uppermiddleincome countries, Western Africa, Western Asia, Western Europe, WORLD. Some strings were matched more than once, and therefore set to NA in the result AustraliaNew Zealand,Australia,New Zealand|
 test_country_list|stem|a5745705c5b2b82c|858a5b4cfe51cdbb|2edef4638057ec1a|1092474503||t19808.252088456s|0b52c5847220add9|82|rds|local|vector|||0||
 wpp_data|stem|d8aadb82c267f908|3b00284c1198b3ff|ef46db3751d8e999|-619037820||t19808.2520803358s|612081d9dcf14b40|320621|rds|local|vector|||4.03|package ggplot2 was built under R version 4.3.3|

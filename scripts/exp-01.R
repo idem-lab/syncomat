@@ -483,6 +483,16 @@ standardise_country_name <- function(data, var_in) {
   )
 }
 
+temp <- in_data_wpp
+standardise_country_name(temp, country)
+
+data$std_country <- countrycode::countryname(
+  data[[column_name]],
+  destination = destination,
+  nomatch = NA,
+  warn = TRUE
+)
+
 standardise_country_names <- function(data, 
                                      column_name, 
                                      destination = "country.name.en") {
@@ -516,7 +526,7 @@ standardize_country_names <- function(data, column_name, destination = "country.
 
 
 temp <- wpp_data
-temp2 <- standardise_country_name(temp, country)
+temp2 <- standardize_country_names(temp, "country")
 
 #%% Non-function approaches -----
 temp <- wpp_data
