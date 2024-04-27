@@ -10,17 +10,17 @@ standardise_country_names <- function(data,
   # Subsequently, only the country names are selected.
   # Returns data frame with a new column called std_country.
   
-  data$country_names <- countrycode::countryname(
+  data$std_country_names <- countrycode::countryname(
     data[[column_name]],
     destination = conversion_destination_code,
     nomatch = NA,
     warn = TRUE
   )
   
-  data_out <- data %>% 
-    filter(!is.na(country_names)) %>% 
-    select(country_names, lower.age.limit, year, population) %>% 
-    rename(lower_age_limit = lower.age.limit)
+  data_out <- data %>%
+    select({{ column_name }}, std_country_names, lower.age.limit, year, population) %>% 
+    rename(lower_age_limit = lower.age.limit) %>% 
+    arrange({{ column_name }}, lower_age_limit)
   
   return(data_out)
 }
