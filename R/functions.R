@@ -1,6 +1,6 @@
 standardise_country_names <- function(data,
                                       column_name,
-                                      destination = "country.name.en"
+                                      conversion_destination_code = "country.name.en"
                                       ) {
   
   # Depends on the countrycode package.
@@ -12,7 +12,7 @@ standardise_country_names <- function(data,
   
   data$country_names <- countrycode::countryname(
     data[[column_name]],
-    destination = destination,
+    destination = conversion_destination_code,
     nomatch = NA,
     warn = TRUE
   )
