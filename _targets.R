@@ -35,15 +35,20 @@ tar_plan(
     wpp_age(years = 2015)
   ),
   
-  # Clean unique issues in wpp_age() data
+  # Clean unique issues in wpp_age() data. All relates to China.
   tar_target(
     cleaned_wpp,
     in_data_wpp %>%
       mutate(country = case_when(
+        
+        # Renames the following, otherwise picked up as "China"
         country == "China, Hong Kong SAR" ~ "Hong Kong",
         country == "China, Taiwan province of China" ~ "Taiwan, Province of China",
         .default = country
-      ))
+      )) %>% 
+      
+      # The following is pesky; otherwise picked up as "China"
+      filter(country != "Less developed regions, excluding China")
   ),
   
   # Standardises the country names
