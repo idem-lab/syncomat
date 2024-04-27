@@ -29,8 +29,8 @@ prem17_countrynames <- read_csv("./data/prem_2017_country_names.csv") %>%
 # Figure out which countries included
 tar_load(standardised_wpp_data)
 std_wpp_countrynames <- standardised_wpp_data %>% 
-  distinct(country_names) %>% 
-  select(country_names) %>% 
+  distinct(std_country_names) %>% 
+  select(std_country_names) %>% 
   rename(country = country_names)
 
 # Countries in WPP that is not in the standardised form
@@ -38,10 +38,15 @@ excluded_wpp_names <- anti_join(wpp_countrynames, std_wpp_countrynames, by = "co
 
 # Fuzzy join --------------
 
+excluded_wpp_countrynames <- standardised_wpp_data %>% 
+  filter(is.na(std_country_names)) %>% 
+  select(country) %>% 
+  distinct(country)
+
 library(fuzzyjoin)
 
 # Let the "gold standard" be the UN country names
-fuzz <- stringdist_inner_join(excluded_wpp_names, un_countrynames, by = "country")
+fuzz <- stringdist_inner_join(excluded_wpp_countrynames, un_countrynames, by = "country")
 
 fuzz <- fuzz %>% 
   select(country.x, std_country) %>% 
@@ -50,3 +55,6 @@ fuzz <- fuzz %>%
     country == "Congo" & std_country == "Togo" ~ NA,
   )
 )
+
+check_cm_equal("./output/240427 all countries output/Albania/Albania_other_2015.csv",
+               "./output/240403 all regions contact matrices/Albania/Albania_other_2015.csv")

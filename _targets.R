@@ -29,7 +29,7 @@ source("R/functions.R")
 
 tar_plan(
   
-  # Loads data from wpp_age() function
+  # Loads 2015 data from wpp_age() function
   tar_target(
     in_data_wpp,
     wpp_age(years = 2015)
@@ -53,17 +53,26 @@ tar_plan(
       cleaned_wpp,
       column_name = "country")),
   
+  # USER: check excluded region names if needed
+  tar_target(
+    excluded_names,
+    standardised_wpp_data %>% 
+      filter(is.na(std_country_names)) %>% 
+      select(country) %>% 
+      distinct(country)
+  ),
+  
   # Creates a list (required for input into the next workflow)
   tar_target(
     list_of_data,
     split(
       standardised_wpp_data, 
-      standardised_wpp_data$country_names)
+      standardised_wpp_data$std_country_names)
   ),
   
   # USER SELECTION - In the following target:
   # Choose which countries you'd like to create 
-  # contact matrices for using the index
+  # contact matrices for using the index (201 total)
   tar_target(
     selection_of_countries,
     list_of_data[1:201]
@@ -90,7 +99,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = data_contact_matrices, 
-      path = "./output/240417 all countries output", 
+      path = "./output/240427 all countries output", 
       subfolder = TRUE
       ), 
     format = "file")
