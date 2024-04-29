@@ -32,7 +32,9 @@ The data frame of standardised country names are then split into lists.
 You can then select which countries you would like to create synthetic contact matrices for in the `selection_of_countries` target object. 
 Creating contact matrices for all 201 countries at once (in other words, running the worflow as-is) takes about 13 minutes.
 
-The next two target objects `population_data` and `contact_matrices_data` uses the `as_conmat_population` and `extrapolate_polymod` functions from `conmat`. `population_data` is a converted `conmat` population data and `contact_matrices_data` are the synthetic contact matrices generated for our data. For more information on the two `conmat` functions above, please refer to the `conmat` package [documentation](https://idem-lab.github.io/conmat/dev/index.html).
+The next two target objects `population_data` and `contact_matrices_data` uses the [`as_conmat_population()`](https://idem-lab.github.io/conmat/dev/reference/as_conmat_population.html) and [`extrapolate_polymod()`](https://idem-lab.github.io/conmat/dev/reference/extrapolate_polymod.html) functions from `conmat`. 
+`population_data` is a converted `conmat` population data and `contact_matrices_data` are the synthetic contact matrices generated for our data. 
+For more information on the two `conmat` functions above, please refer to the `conmat` package [documentation](https://idem-lab.github.io/conmat/dev/index.html).
 
 If you would like to adjust the age limits for the synthetic contact matrices, this can be done by changing the `start_age` and `end_age` arguments in the `create_contact_matrices()` function within the `contact_matrices_data` target object.
 
