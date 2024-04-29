@@ -56,7 +56,9 @@ tar_plan(
     standardised_wpp_data,
     standardise_country_names(
       cleaned_wpp,
-      column_name = "country")),
+      column_name = "country",
+      conversion_destination_code = "country.name.en")
+  ),
   
   # USER: check excluded region names if needed
   tar_target(
@@ -87,7 +89,7 @@ tar_plan(
   tar_target(
     population_data, 
     create_population_data(selection_of_countries)
-    ),
+  ),
   
   # Create contact matrices
   tar_target(
@@ -107,6 +109,7 @@ tar_plan(
       path = "./output/240427 all countries output", 
       subfolder = TRUE
       ), 
-    format = "file")
+    format = "file"
+  )
   
 )
