@@ -4,7 +4,7 @@ This workflow extends the [`conmat`](https://github.com/idem-lab/conmat) package
 
 ## Workflow
 
-This analysis uses a [`targets` workflow](https://books.ropensci.org/targets/). This section will explain each target object and therefore explain each part of the analysis.
+This analysis uses a `targets` [workflow](https://books.ropensci.org/targets/). This section will explain each target object and therefore explain each part of the analysis.
 
 First we create the age-specific population data we would like to generate synthetic contact matrices for. 
 In this instance, we obtain this population data using the `wpp_age()` function from the `socialmixr` package.
@@ -44,7 +44,7 @@ To run the analysis using your own population data: open the `_targets.R` script
 
 ## Data sources
 
-The age-specific population data that forms the basis for this analysis were derived from the `wpp_age` function in the [`socialmixr` package](https://epiforecasts.io/socialmixr/), which uses data from the [`wpp2017` package](https://cran.r-project.org/web/packages/wpp2017/index.html).
+The age-specific population data that forms the basis for this analysis were derived from the `wpp_age` function in the [`socialmixr`](https://epiforecasts.io/socialmixr/) package, which uses data from the [`wpp2017`](https://cran.r-project.org/web/packages/wpp2017/index.html) package.
 
 ## Notes
 
@@ -52,4 +52,4 @@ The contact matrices created are transposed in comparison to those discussed by 
 
 For more information on the `conmat` package, refer to its [documentation](https://idem-lab.github.io/conmat/dev/index.html).
 
-For more information on targets workflows, refer to the [`targets` user manual](https://books.ropensci.org/targets/).
+For more information on targets workflows, refer to the `targets` [user manual](https://books.ropensci.org/targets/).
