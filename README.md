@@ -46,7 +46,7 @@ To run the analysis using your own population data: open the `_targets.R` script
 
 ## Data sources
 
-The age-specific population data that forms the basis for this analysis were derived from the `wpp_age` function in the [`socialmixr`](https://epiforecasts.io/socialmixr/) package, which uses data from the [`wpp2017`](https://cran.r-project.org/web/packages/wpp2017/index.html) package.
+The age-specific population data that forms the basis for this analysis were derived from the [`wpp_age()`](https://epiforecasts.io/socialmixr/reference/wpp_age.html) function in the [`socialmixr`](https://epiforecasts.io/socialmixr/) package, which uses data from the [`wpp2017`](https://cran.r-project.org/web/packages/wpp2017/index.html) package.
 
 ## Notes
 
