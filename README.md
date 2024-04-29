@@ -2,9 +2,11 @@
 
 This workflow extends the [`conmat`](https://github.com/idem-lab/conmat) package to generate synthetic contact matrices for all countries listed in the United Nations' World Population Prospects (2017).
 
-## Workflow
+## Step-by-step instructions
 
-This analysis uses a `targets` [workflow](https://books.ropensci.org/targets/). This section will explain each target object and therefore explain each part of the analysis.
+This section will explain each target object so you can run the analysis yourself.
+
+This analysis uses a `targets` workflow. Refer to the `targets` [documentation](https://books.ropensci.org/targets/) for more information.
 
 First we create the age-specific population data we would like to generate synthetic contact matrices for. 
 In this instance, we obtain this population data using the `wpp_age()` function from the `socialmixr` package.
