@@ -1,6 +1,7 @@
 # conmat extension: All countries
 
-This workflow extends the [`conmat`](https://github.com/idem-lab/conmat) package to generate synthetic contact matrices for all countries listed in the United Nations' World Population Prospects (2017).
+This workflow generates synthetic contact matrices for all countries listed in the United Nations' World Population Prospects (2017), 
+extending the [`conmat`](https://github.com/idem-lab/conmat) package and [Prem, Cook, and Jit's (2017)](https://doi.org/10.1371/journal.pcbi.1005697) methodology.
 
 ## Step-by-step instructions
 
