@@ -58,3 +58,28 @@ fuzz <- fuzz %>%
 
 check_cm_equal("./output/240427 all countries output/Albania/Albania_other_2015.csv",
                "./output/240403 all regions contact matrices/Albania/Albania_other_2015.csv")
+
+# Re-writing for tidyverse -----
+
+standardise_country_names <- function(data,
+                                      column_name,
+                                      conversion_destination_code = "country.name.en"
+) {
+  
+  data_1 <- data %>% 
+    mutate(std_country_names = countrycode::countryname(
+      {{ column_name }},
+      destination = conversion_destination_code,
+      nomatch = NA,
+      warn = TRUE
+    ))
+  
+  data_out <- data_1 %>%
+    select({{ column_name }}, std_country_names, lower.age.limit, year, population) %>% 
+    rename(lower_age_limit = lower.age.limit) %>% 
+    arrange({{ column_name }}, lower_age_limit)
+  
+  data_out
+}
+
+temp <- standardise_country_names(cleaned_wpp, country)

@@ -25,7 +25,7 @@ source("R/functions.R")
 tar_plan(
   
   # Loads 2015 data from wpp_age() function
-  # USER: If you would like to use your own data,
+  # USER: If you would like to use your own population data,
   #       add it in here.
   tar_target(
     in_data_wpp,
