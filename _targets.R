@@ -12,7 +12,8 @@ tar_option_set(
                "dplyr",
                "glue", 
                "fs",
-               "purrr")
+               "purrr",
+               "cli")
   )
 
 # Set up a workspace when our code errors
@@ -54,7 +55,7 @@ tar_plan(
     standardise_country_names(
       cleaned_wpp,
       column_name = "country",
-      conversion_destination_code = "iso.name.en")
+      conversion_destination_code = "iso3c")
   ),
   
   # USER: check excluded region names if needed

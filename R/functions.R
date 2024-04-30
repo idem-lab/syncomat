@@ -1,6 +1,6 @@
 standardise_country_names <- function(data,
                                       column_name,
-                                      conversion_destination_code = "country.name.en"
+                                      conversion_destination_code = "iso3c"
                                       ) {
   
   # Depends on the countrycode package.
@@ -98,11 +98,8 @@ check_cm_equal <- function(file1, file2) {
   
   # Check if the data frames are equal
   if (identical(data1, data2)) {
-    ## TODO
-    ## Use `cli` pkg to handle messages and stop/warnings
-    ## e.g., cli_inform()/cli_warn()/cli_abort()
-    message("The contact matrices (csv files) are identical.")
+    cli_alert_success("The contact matrices from {file1} and {file2} are identical.")
   } else {
-    stop("Warning! The contact matrices (csv files) are not identical.")
+    cli_alert_danger("Warning! The contact matrices from {file1} and {file2} are not identical.")
   }
 }
