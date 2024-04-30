@@ -1,0 +1,26 @@
+{
+    "id": "09E9AB04",
+    "path": "~/Local Workbench/conmat-testing/_targets.R",
+    "project_path": "_targets.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1713413628275.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "89,33",
+        "scrollLine": "82"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1714473081,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1714473081492,
+    "read_only": false,
+    "read_only_alternatives": []
+}

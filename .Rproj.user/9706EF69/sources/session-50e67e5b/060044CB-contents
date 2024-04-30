@@ -1,0 +1,6 @@
+wpp_countrynames$iso <- countrycode::countryname(
+  wpp_countrynames$country,
+  destination = "iso3c",
+  nomatch = NA,
+  warn = TRUE
+)
