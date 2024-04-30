@@ -105,6 +105,7 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = contact_matrices_data, 
+      ## TODO update this file path
       path = "./output/240427 all countries output", 
       subfolder = TRUE
       ), 

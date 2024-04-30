@@ -1,9 +1,30 @@
 # conmat extension: All countries
 
 This workflow generates synthetic contact matrices for all countries listed in the United Nations' World Population Prospects (2017), 
-extending the [`conmat`](https://github.com/idem-lab/conmat) package and [Prem, Cook, and Jit's (2017)](https://doi.org/10.1371/journal.pcbi.1005697) methodology.
+using the [`conmat`](https://github.com/idem-lab/conmat) package. The work in the `conmat` package is motivated by the contact matrices generated in [Prem, Cook, and Jit (2017)](https://doi.org/10.1371/journal.pcbi.1005697).
 
-## Step-by-step instructions
+- describe what the main output of this work is - namely providing .csv files (that are well named), of contact matrices for the countries specified.
+
+## How to download contact matrices
+
+- Which files/folders to download
+- Any structural notes - e.g., which directories, what the column names are of the contact matrices (e.g., iso3 standard, and an example of what that is, and why it was used)
+- even provide the top/example output of the matrices and how you would read it in from R
+
+```r
+library(readr)
+afghanistal_url <- "https://raw.githubusercontent.com/chitrams/conmat-testing/main/output/240427%20all%20countries%20output/Afghanistan/Afghanistan_all_2015.csv"
+afghanistan_all_contact <- read_csv(afghanistal_url)
+afghanistan_all_contact
+```
+
+## How to recreate this analysis
+
+1. Look at `_targets.R`
+2. Notes on which packages to install
+  - consider `renv`?
+
+## Methodology
 
 This section will explain each target object so you can run the analysis yourself.
 

@@ -98,6 +98,9 @@ check_cm_equal <- function(file1, file2) {
   
   # Check if the data frames are equal
   if (identical(data1, data2)) {
+    ## TODO
+    ## Use `cli` pkg to handle messages and stop/warnings
+    ## e.g., cli_inform()/cli_warn()/cli_abort()
     message("The contact matrices (csv files) are identical.")
   } else {
     stop("Warning! The contact matrices (csv files) are not identical.")
