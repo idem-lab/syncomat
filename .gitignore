@@ -1,5 +1,10 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-resources/
+# Ignore everything in this folder
+*
+
+# Except for the following
+!.gitignore
+!_targets/
+!_targets.R
+!output-contact-matrices/
+!R/
+!README.md
