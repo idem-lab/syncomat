@@ -7,12 +7,9 @@ tar_option_set(
   packages = c("conmat", 
                "socialmixr", 
                "countrycode",
-               "mgcv",
                "tibble", 
                "readr", 
-               "dplyr", 
-               "ggplot2", 
-               "patchwork", 
+               "dplyr",
                "glue", 
                "fs",
                "purrr")
@@ -25,17 +22,17 @@ source("R/functions.R")
 
 # Target objects ------------------------------
 
-# To make dataset from wpp_age() only
-
 tar_plan(
   
   # Loads 2015 data from wpp_age() function
+  # USER: If you would like to use your own data,
+  #       add it in here.
   tar_target(
     in_data_wpp,
     wpp_age(years = 2015)
   ),
   
-  # Clean unique issues in wpp_age() data. All relates to China.
+  # Clean unique issues in wpp_age() data
   tar_target(
     cleaned_wpp,
     in_data_wpp %>%
@@ -51,7 +48,7 @@ tar_plan(
       filter(country != "Less developed regions, excluding China")
   ),
   
-  # Standardises the country names
+  # Standardise country names
   tar_target(
     standardised_wpp_data,
     standardise_country_names(
@@ -75,15 +72,16 @@ tar_plan(
       standardised_wpp_data$std_country_names)
   ),
   
-  # USER SELECTION - In the following target:
-  # Choose which countries you'd like to create 
-  # contact matrices for using the index (201 total)
+  # USER: In the following target object:
+  #       Choose which countries you'd like to create 
+  #       contact matrices for using the index
+  #       (201 countries from wpp_age() data)
   tar_target(
     selection_of_countries,
     list_of_data[1:201]
   ),
   
-  # Create conmat's population data
+  # Create population data
   tar_target(
     population_data, 
     create_population_data(selection_of_countries)
@@ -99,7 +97,8 @@ tar_plan(
     )
   ),
   
-  # Save the csv files
+  # Save as csv files
+  # USER: Change path and subfolder option here
   tar_target(
     csv_output,
     save_conmat_as_csv(
