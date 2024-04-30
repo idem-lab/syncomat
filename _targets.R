@@ -54,7 +54,7 @@ tar_plan(
     standardise_country_names(
       cleaned_wpp,
       column_name = "country",
-      conversion_destination_code = "country.name.en")
+      conversion_destination_code = "iso.name.en")
   ),
   
   # USER: check excluded region names if needed
@@ -105,9 +105,8 @@ tar_plan(
     csv_output,
     save_conmat_as_csv(
       matrix_list = contact_matrices_data, 
-      ## TODO update this file path
-      path = "./output/240427 all countries output", 
-      subfolder = TRUE
+      path = "./output-contact-matrices", 
+      subfolder = FALSE
       ), 
     format = "file"
   )
