@@ -81,7 +81,7 @@ tar_plan(
   #       (201 countries from wpp_age() data)
   tar_target(
     selection_of_countries,
-    list_of_data[1:201]
+    list_of_data[1:200]
   ),
   
   # Create population data
