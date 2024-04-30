@@ -8,15 +8,6 @@ The contact matrices can be found in the folder `output-contact-matrices`.
 
 Each csv file is named in the convention `{Country}_{Environment}_2015.csv`. For example, `AUS_work_2015.csv`. Country names are in ISO-3 format. The five environments for each country are all, home, school, work, and other.
 
-#TODO provide the top/example output of the matrices and how you would read it in from R
-
-``` r
-library(readr)
-afghanistan_url <- "https://raw.githubusercontent.com/chitrams/conmat-testing/main/output/240427%20all%20countries%20output/Afghanistan/Afghanistan_all_2015.csv"
-afghanistan_all_contact <- read_csv(afghanistan_url)
-afghanistan_all_contact
-```
-
 ## Recreate this analysis
 
 To recreate this analysis, you would need to be familiar with the `targets` workflow.
@@ -26,8 +17,6 @@ Make any changes necessary in the `_targets.R` file, then run `tar_make()`. If y
 Without any changes, it will take approximately 13 minutes to run the entire process, which will generate contact matrices for 201 countries.
 
 The packages needed for this workflow are listed in the `_targets.R` file, under the heading "Set-up."
-
-#TODO consider `renv`?
 
 ## Methodology
 
