@@ -3,12 +3,13 @@ standardise_country_names <- function(data,
                                       conversion_destination_code = "iso3c"
                                       ) {
   
-  # Depends on the countrycode package.
   # This function takes country names from age-specific population data
   # and standardises the country names according to current UN standards
   # Uses fuzzy matching, so slightly-off names are also standardised. 
   # Subsequently, only the country names are selected.
   # Returns data frame with a new column called std_country.
+  #
+  # Requires the countrycode package.
   
   data$std_country_names <- countrycode::countryname(
     data[[column_name]],
@@ -30,6 +31,8 @@ create_population_data <- function(in_list_of_data){
   # This function takes the list of countries,
   # and plugs it into as_conmat_population()
   # to create the population data.
+  #
+  # Requires conmat and purrr.
   
   population_data <- map(
     .x = in_list_of_data,
@@ -48,6 +51,8 @@ create_contact_matrices <- function(population_data,
   # This function takes the population data
   # and subsequently uses extrapolate_polymod()
   # to derive the social contact matrices
+  #
+  # Requires conmat and purrr.
   
   age_breaks_user_defined <- c(seq(start_age, end_age, by = 5), Inf)
   
@@ -70,6 +75,8 @@ save_conmat_as_csv <- function(matrix_list,
   # extrapolate_polymod() for a list of countries and
   # saves them to individual csv files.
   # Option to save to subfolders.
+  #
+  # Requires glue.
   
   for (country_name in names(matrix_list)) {
     country_matrices <- matrix_list[[country_name]]
@@ -93,6 +100,12 @@ save_conmat_as_csv <- function(matrix_list,
 }
 
 check_cm_equal <- function(file1, file2) {
+  
+  # This function checks whether the two csv files are the same.
+  # Useful for testing.
+  #
+  # Requires cli.
+  
   data1 <- read.csv(file1, stringsAsFactors = FALSE)
   data2 <- read.csv(file2, stringsAsFactors = FALSE)
   
