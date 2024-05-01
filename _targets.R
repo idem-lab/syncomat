@@ -16,7 +16,6 @@ tar_option_set(
                "cli")
   )
 
-# Set up a workspace when our code errors
 tar_option_set(workspace_on_error = TRUE)
 
 source("R/functions.R")
@@ -25,15 +24,14 @@ source("R/functions.R")
 
 tar_plan(
   
-  # Loads 2015 data from wpp_age() function
   # USER: If you would like to use your own population data,
-  #       add it in here.
+  #       add it in here instead of the 2015 WPP data.
   tar_target(
     in_data_wpp,
     wpp_age(years = 2015)
   ),
   
-  # Clean unique issues in wpp_age() data
+  # Clean issues unique to the wpp_age() data
   tar_target(
     cleaned_wpp,
     in_data_wpp %>%
@@ -45,11 +43,10 @@ tar_plan(
         .default = country
       )) %>% 
       
-      # The following is pesky; otherwise picked up as "China"
+      # The following is otherwise picked up as "China"
       filter(country != "Less developed regions, excluding China")
   ),
   
-  # Standardise country names
   tar_target(
     standardised_wpp_data,
     standardise_country_names(
@@ -58,7 +55,6 @@ tar_plan(
       conversion_destination_code = "iso3c")
   ),
   
-  # USER: check excluded region names if needed
   tar_target(
     excluded_names,
     standardised_wpp_data %>% 
@@ -67,7 +63,6 @@ tar_plan(
       distinct(country)
   ),
   
-  # Creates a list (required for input into the next workflow)
   tar_target(
     list_of_data,
     split(
@@ -75,22 +70,16 @@ tar_plan(
       standardised_wpp_data$std_country_names)
   ),
   
-  # USER: In the following target object:
-  #       Choose which countries you'd like to create 
-  #       contact matrices for using the index
-  #       (201 countries from wpp_age() data)
   tar_target(
     selection_of_countries,
     list_of_data[1:200]
   ),
   
-  # Create population data
   tar_target(
     population_data, 
     create_population_data(selection_of_countries)
   ),
   
-  # Create contact matrices
   tar_target(
     contact_matrices_data, 
     create_contact_matrices(
@@ -100,8 +89,6 @@ tar_plan(
     )
   ),
   
-  # Save as csv files
-  # USER: Change path and subfolder option here
   tar_target(
     csv_output,
     save_conmat_as_csv(
