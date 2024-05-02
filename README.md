@@ -55,6 +55,12 @@ The packages needed for this workflow are listed in the `_targets.R` file, under
 
 ## Methodology
 
+Here we provide the relevant components of the code in `_targets.R` and describe what these parts of the code are doing.
+
+```r
+
+```
+
 1.  Create the age-specific population data you would like to generate synthetic contact matrices for. In this instance, the population data was obtained using the `wpp_age()` function from the `socialmixr` package.
 
     If you would like to use your own age-specific population data, load your data as a target object here. Your data must have the following variables:
