@@ -77,10 +77,7 @@ Here we provide the relevant code from `_targets.R` and describe what
 they do.
 
 1.  Create the age-specific population data you would like to generate
-    synthetic contact matrices for. In this instance, the population
-    data was obtained using the `wpp_age()` function from the
-    `socialmixr` package. The data is saved in the target object
-    `in_data_wpp`.
+    synthetic contact matrices for.
 
     ``` r
     tar_target(
@@ -97,6 +94,10 @@ they do.
     - `year` for the year of survey,
     - `lower.age.limit` for the lower age limit of each age group, and
     - `population` for the size of each age group.
+
+    In this instance, we use the `wpp_age()` function from the
+    `socialmixr` package to obtain our population data. The data is
+    saved in the target object `in_data_wpp`.
 
 2.  Clean the data.
 
@@ -194,9 +195,7 @@ they do.
     Alternatively, use `dplyr::filter()` if you have a list of country
     names you would like to filter.
 
-7.  `population_data` is a converted `conmat` population data using the
-    [`as_conmat_population()`](https://idem-lab.github.io/conmat/dev/reference/as_conmat_population.html)
-    function from `conmat`.
+7.  Convert our data to a `conmat` population data.
 
     ``` r
     tar_target(
@@ -205,10 +204,11 @@ they do.
     ),
     ```
 
-8.  Generate synthetic contact matrices from our population data using
-    the
-    [`extrapolate_polymod()`](https://idem-lab.github.io/conmat/dev/reference/extrapolate_polymod.html)
+    The function `create_population_data()` uses the
+    [`as_conmat_population()`](https://idem-lab.github.io/conmat/dev/reference/as_conmat_population.html)
     function from `conmat`.
+
+8.  Generate synthetic contact matrices from our population data.
 
     ``` r
     tar_target(
@@ -226,6 +226,10 @@ they do.
     arguments in the `create_contact_matrices()` function. The default
     is 0 to 80+ years. If you would like to change it to 0 to 60+, you
     would change `end_age = 60`.
+
+    The `create_contact_matrices()` function uses the
+    [`extrapolate_polymod()`](https://idem-lab.github.io/conmat/dev/reference/extrapolate_polymod.html)
+    function from `conmat`.
 
 9.  Save the generated synthetic contact matrices as csv files.
 
