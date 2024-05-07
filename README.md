@@ -69,7 +69,9 @@ the entire process, which will generate contact matrices for 200
 countries.
 
 The packages needed for this workflow are listed in the `_targets.R`
-file, under the heading “Set-up.” If you are running into issues with any of the packages on your machine, run `renv::restore()` to install the exact same versions of the packages used in this analysis.
+file, under the heading “Set-up.” If you are running into issues with
+any of the packages on your machine, run `renv::restore()` to install
+the exact same versions of the packages used in this analysis.
 
 ## Methodology
 

@@ -54,7 +54,7 @@ Without any changes, it will take approximately 13 minutes[^readme-4] to run the
 
 [^readme-4]: This pipeline took 13 minutes to run on a computer equipped with an Intel Core i7-8565U and 16 GB of RAM running a 64-bit version of Windows.
 
-The packages needed for this workflow are listed in the `_targets.R` file, under the heading "Set-up."
+The packages needed for this workflow are listed in the `_targets.R` file, under the heading "Set-up." If you are running into issues with any of the packages on your machine, run `renv::restore()` to install the exact same versions of the packages used in this analysis.
 
 ## Methodology
 
