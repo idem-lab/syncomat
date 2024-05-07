@@ -52,7 +52,7 @@ Make any changes necessary in the `_targets.R` file, then run `tar_make()`. If y
 
 Without any changes, it will take approximately 13 minutes[^readme-4] to run the entire process, which will generate contact matrices for 200 countries.
 
-[^readme-4]: This pipeline took 13 minutes to run on a computer equipped with an Intel:registered: Core:tm: i7-8565U and 16 GB of RAM running a 64-bit version of Windows.
+[^readme-4]: This pipeline took 13 minutes to run on a computer equipped with an Intel Core i7-8565U and 16 GB of RAM running a 64-bit version of Windows.
 
 The packages needed for this workflow are listed in the `_targets.R` file, under the heading "Set-up."
 

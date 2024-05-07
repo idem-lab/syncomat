@@ -287,8 +287,8 @@ words, the rows are “age group to” and the columns are “age group from”.
     [user manual](https://books.ropensci.org/targets/).
 
 [^3]: This pipeline took 13 minutes to run on a computer equipped with
-    an Intel:registered: Core:tm: i7-8565U and 16 GB of RAM running a
-    64-bit version of Windows.
+    an Intel Core i7-8565U and 16 GB of RAM running a 64-bit version of
+    Windows.
 
 [^4]: Refer to the `countrycodes`
     [documentation](https://vincentarelbundock.github.io/countrycode/#/man/codelist)
