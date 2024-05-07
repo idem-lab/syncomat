@@ -246,9 +246,9 @@ they do.
     ```
 
     The `path` argument allows you to specify where you would like to
-    save these csv files; change this if you would like to change the
-    folder name. The default folder name is `output-contact-matrices`
-    within the project directory.
+    save these csv files; change this if you would like to change where
+    the files should be saved. The folder specified in `path` must
+    already exist.
 
     The `subfolder` argument defaults to `FALSE`, which means the
     generated contact matrices for all countries would be saved within
