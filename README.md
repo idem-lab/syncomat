@@ -60,8 +60,6 @@ group to.”
 To recreate this analysis, you would need to be familiar with the
 `targets` workflow.[^2]
 
-If you are running into issues with packages and dependencies on your machine, run `renv::restore()` to install the exact same versions of the packages used in this analysis.
-
 Make any changes necessary in the `_targets.R` file, then run
 `tar_make()`. If you’re unsure how to make your changes, the following
 **Methodology** section will explain each target object.
@@ -71,7 +69,7 @@ the entire process, which will generate contact matrices for 200
 countries.
 
 The packages needed for this workflow are listed in the `_targets.R`
-file, under the heading “Set-up.”
+file, under the heading “Set-up.” If you are running into issues with any of the packages on your machine, run `renv::restore()` to install the exact same versions of the packages used in this analysis.
 
 ## Methodology
 
