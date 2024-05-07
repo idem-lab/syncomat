@@ -60,6 +60,8 @@ group to.”
 To recreate this analysis, you would need to be familiar with the
 `targets` workflow.[^2]
 
+If you are running into issues with packages and dependencies on your machine, run `renv::restore()` to install the exact same versions of the packages used in this analysis.
+
 Make any changes necessary in the `_targets.R` file, then run
 `tar_make()`. If you’re unsure how to make your changes, the following
 **Methodology** section will explain each target object.
