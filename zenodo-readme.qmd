@@ -1,0 +1,1 @@
+Synthetically generated contact matrices for 200 countries using the R package conmat.
