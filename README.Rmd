@@ -44,17 +44,19 @@ kable(
 
 ## Recreate this analysis
 
-To recreate this analysis, you would need to be familiar with the `targets` workflow.[^readme-2]
+To recreate this analysis, you would need to be familiar with the `targets` workflow.[^readme-2] This pipeline also utilises `renv`.
 
 [^readme-2]: For more information on `targets` workflow, refer to the `targets` [user manual](https://books.ropensci.org/targets/).
 
-Make any changes necessary in the `_targets.R` file, then run `tar_make()`. If you're unsure how to make your changes, the following **Methodology** section will explain each target object.
+Open the `_targets.R` file, and run all lines of code under the Set-up section to load the R packages required for this pipeline. You can then run `tar_make()` to run the entire pipeline.
 
-Without any changes, it will take approximately 13 minutes[^readme-4] to run the entire process, which will generate contact matrices for 200 countries.
+If you are running into issues with any of the packages on your machine, run `renv::restore()` to install the same versions of the packages used in this analysis.
+
+If you need more information about the pipeline, the following **Methodology** section will explain each target object.
+
+This pipeline takes approximately 13 minutes[^readme-4] to run, which will generate contact matrices for 200 countries.
 
 [^readme-4]: This pipeline took 13 minutes to run on a computer equipped with an Intel Core i7-8565U and 16 GB of RAM running a 64-bit version of Windows.
-
-The packages needed for this workflow are listed in the `_targets.R` file, under the heading "Set-up." If you are running into issues with any of the packages on your machine, run `renv::restore()` to install the exact same versions of the packages used in this analysis.
 
 ## Methodology
 

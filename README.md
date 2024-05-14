@@ -58,20 +58,21 @@ group to.”
 ## Recreate this analysis
 
 To recreate this analysis, you would need to be familiar with the
-`targets` workflow.[^2]
+`targets` workflow.[^2] This pipeline also utilises `renv`.
 
-Make any changes necessary in the `_targets.R` file, then run
-`tar_make()`. If you’re unsure how to make your changes, the following
+Open the `_targets.R` file, and run all lines of code under the Set-up
+section to load the R packages required for this pipeline. You can then
+run `tar_make()` to run the entire pipeline.
+
+If you are running into issues with any of the packages on your machine,
+run `renv::restore()` to install the same versions of the packages used
+in this analysis.
+
+If you need more information about the pipeline, the following
 **Methodology** section will explain each target object.
 
-Without any changes, it will take approximately 13 minutes[^3] to run
-the entire process, which will generate contact matrices for 200
-countries.
-
-The packages needed for this workflow are listed in the `_targets.R`
-file, under the heading “Set-up.” If you are running into issues with
-any of the packages on your machine, run `renv::restore()` to install
-the exact same versions of the packages used in this analysis.
+This pipeline takes approximately 13 minutes[^3] to run, which will
+generate contact matrices for 200 countries.
 
 ## Methodology
 
