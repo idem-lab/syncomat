@@ -4,6 +4,6 @@
 .Rproj.user/**
 .Renviron
 conmat-testing.Rproj
-output
+output/
 resources
 .Rproj.user
