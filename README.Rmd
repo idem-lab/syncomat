@@ -33,6 +33,8 @@ aus_work_cm <- read_csv(url)
 
 The following is a synthetic contact matrix for Australia in a work setting, with the columns being "age group from" and the rows being "age group to."
 
+Each cell is the expected number of people that an individual will have contact with per day. 
+
 ```{r, echo = FALSE}
 colnames(aus_work_cm)[1] <- "age_groups"
 
