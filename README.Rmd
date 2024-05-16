@@ -27,22 +27,21 @@ Here is how you would load the contact matrices in R:
 
 ```{r, results = "hide", message = FALSE}
 library(readr)
-url <- "https://raw.githubusercontent.com/chitrams/conmat-testing/main/output-contact-matrices/AUS_work_2015.csv"
-aus_work_cm <- read_csv(url)
+url <- "https://raw.githubusercontent.com/idem-lab/syncomat/main/output-contact-matrices/AUS_all_2015.csv"
+aus_all_cm <- read_csv(url)
 ```
 
-The following is a synthetic contact matrix for Australia in a work setting, with the columns being "age group from" and the rows being "age group to."
-
-Each cell is the expected number of people that an individual will have contact with per day. 
+The following is a synthetic contact matrix for Australia in all settings, with the columns being "age group from" and the rows being "age group to."
 
 ```{r, echo = FALSE}
-colnames(aus_work_cm)[1] <- "age_groups"
+colnames(aus_all_cm)[1] <- "age_groups"
 
 kable(
-  aus_work_cm,
+  aus_all_cm,
   digits = 5)
 ```
 
+Each cell is the expected number of people that an individual will have contact with per day. In the contact matrix above, the number 2.36549 in the first column and first row indicates that we expect a 0-5 year old to be in contact with two other 0-5 year olds per day. The number 1.27998 in the first column, seventh row (30-35 age group) indicates that a 0-5 year old is, on average, in contact with one 30-35 year old per day.
 
 ## Recreate this analysis
 
