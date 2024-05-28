@@ -4,6 +4,7 @@
 # Synthetic contact matrices for 200 countries
 
 <!-- badges: start -->
+[![DOI](https://zenodo.org/badge/770713133.svg)](https://zenodo.org/doi/10.5281/zenodo.11365942)
 <!-- badges: end -->
 
 This analysis pipeline provides csv files of synthetic contact matrices
