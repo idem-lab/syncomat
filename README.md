@@ -20,8 +20,8 @@ The contact matrices can be found in the folder
 `output-contact-matrices`.
 
 Each csv file is named in the convention
-`{Country}_{Environment}_2015.csv`; for example, `AUS_work_2015.csv`.
-Country names are in ISO-3 format. The five environments for each
+`{Country}_{Setting}_2015.csv`; for example, `AUS_work_2015.csv`.
+Country names are in ISO-3 format. The five settings for each
 country are: home, school, work, other, and all.
 
 Here is how you would load the contact matrices in R:
@@ -270,7 +270,7 @@ they do.
     Alternatively, if the `subfolder` argument were set to `TRUE`, the
     five resulting contact matrices for each country are saved in its
     own subdirectory. In other words, the five synthetic contact
-    matrices generated (for the environments: all, home, other, school,
+    matrices generated (for the settings: all, home, other, school,
     and work) for one country–as an example, Australia–is saved in its
     own subfolder labelled ‘AUS’ within the path specified.
 
