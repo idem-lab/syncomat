@@ -13,6 +13,7 @@ tar_option_set(
                "glue", 
                "fs",
                "purrr",
+               "furrr",
                "cli")
   )
 
