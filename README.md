@@ -8,27 +8,31 @@
 [![DOI](https://zenodo.org/badge/770713133.svg)](https://zenodo.org/doi/10.5281/zenodo.11365942)
 <!-- badges: end -->
 
-This analysis pipeline generates csv files of synthetic contact matrices
-for all countries listed in the United Nations’ World Population
-Prospects (2017), using the
+This analysis pipeline produces csv files of synthetic contact matrices
+generated for all countries listed in the United Nations’ World
+Population Prospects (2017), using the
 [`conmat`](https://github.com/idem-lab/conmat) package.[^1] The `conmat`
 package is motivated by the contact matrices generated in [Prem, Cook,
 and Jit (2017)](https://doi.org/10.1371/journal.pcbi.1005697).
 
-These instructions will help you download the csv files of synthetic
-contact matrices and to modify the pipeline to suit your own needs.
+These instructions will assist you in downloading the csv files for
+synthetic contact matrices, and to modify the analysis pipeline to suit
+your own needs.
 
-## Download contact matrices
+## Download synthetic contact matrices
 
-The contact matrices can be found in the folder
-`output-contact-matrices`.
+You can download the synthetic contact matrices by navigating to our
+[Zenodo repository](https://zenodo.org/records/11365943) and downloading
+the zip file. The contact matrices can be found in the folder
+**output-contact-matrices**.
 
 Each csv file is named in the convention
 `{Country}_{Environment}_2015.csv`; for example, `AUS_work_2015.csv`.
 Country names are in ISO-3 format. The five environments for each
 country are: home, school, work, other, and all.
 
-Here is how you would load the contact matrices in R:
+Alternatively, if you would like to load specific contact matrices, here
+is how you would do so for Australia in all settings:
 
 ``` r
 library(readr)
@@ -36,8 +40,8 @@ url <- "https://raw.githubusercontent.com/idem-lab/syncomat/main/output-contact-
 aus_all_cm <- read_csv(url)
 ```
 
-The following is a synthetic contact matrix for Australia in all
-settings, with the columns being “age group from” and the rows being
+The following is how the synthetic contact matrix looks for Australia in
+all settings, with the columns being “age group from” and the rows being
 “age group to.”
 
 | age_groups |  \[0,5) | \[5,10) | \[10,15) | \[15,20) | \[20,25) | \[25,30) | \[30,35) | \[35,40) | \[40,45) | \[45,50) | \[50,55) | \[55,60) | \[60,65) | \[65,70) | \[70,75) | \[75,80) | \[80,Inf) |
@@ -68,21 +72,25 @@ to be in contact with two other 0-5 year olds per day. The number
 that a 0-5 year old is, on average, in contact with one 30-35 year old
 per day.
 
-## Recreate this analysis
+## Running the analysis pipeline
 
-To recreate this analysis, you would need to be familiar with the
+To run this analysis pipeline, you would need to be familiar with the
 `targets` workflow.[^2] This pipeline also utilises `renv`.
 
-Open the `_targets.R` file, and run all lines of code under the Set-up
-section to load the R packages required for this pipeline. You can then
-run `tar_make()` to run the entire pipeline.
+First, download the zip file of this analysis pipeline from our [Zenodo
+repository](https://zenodo.org/records/11365943). Open the project in a
+new RStudio session.
 
-If you are running into issues with any of the packages on your machine,
-run `renv::restore()` to install the same versions of the packages used
+Run `renv::restore()` to install the same versions of the packages used
 in this analysis.
 
+Open the `_targets.R` file, and run all lines of code under the
+**Set-up** section to load the R packages required for this pipeline.
+You can then run `tar_make()` to run the entire pipeline.
+
 If you need more information about the pipeline, the following
-**Methodology** section will explain each target object.
+**Methodology** section will explain each target object and how you can
+modify each object to suit your own analysis needs.
 
 This pipeline takes approximately 13 minutes[^3] to run, which will
 generate contact matrices for 200 countries.
