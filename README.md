@@ -4,14 +4,19 @@
 # Synthetic contact matrices for 200 countries
 
 <!-- badges: start -->
+
+[![DOI](https://zenodo.org/badge/770713133.svg)](https://zenodo.org/doi/10.5281/zenodo.11365942)
 <!-- badges: end -->
 
-This analysis pipeline provides csv files of synthetic contact matrices
-generated for all countries listed in the United Nations’ World
-Population Prospects (2017), using the
+This analysis pipeline generates csv files of synthetic contact matrices
+for all countries listed in the United Nations’ World Population
+Prospects (2017), using the
 [`conmat`](https://github.com/idem-lab/conmat) package.[^1] The `conmat`
 package is motivated by the contact matrices generated in [Prem, Cook,
 and Jit (2017)](https://doi.org/10.1371/journal.pcbi.1005697).
+
+These instructions will help you download the csv files of synthetic
+contact matrices and to modify the pipeline to suit your own needs.
 
 ## Download contact matrices
 
