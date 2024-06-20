@@ -70,9 +70,13 @@ tar_plan(
       standardised_wpp_data$std_country_names)
   ),
   
+  # Select the countries you would like to 
+  # generate synthetic contact matrices for
   tar_target(
     selection_of_countries,
     list_of_data[1:200]
+    # Or alternatively, use dplyr's filter function:
+    # dplyr::filter(country %in% c("Australia", "New Zealand"))
   ),
   
   tar_target(
