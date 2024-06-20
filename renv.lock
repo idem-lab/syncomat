@@ -1126,14 +1126,14 @@
     },
     "socialmixr": {
       "Package": "socialmixr",
-      "Version": "0.3.1.9000",
+      "Version": "0.3.2.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "socialmixr",
       "RemoteUsername": "epiforecasts",
+      "RemoteRepo": "socialmixr",
       "RemoteRef": "HEAD",
-      "RemoteSha": "10c6d8eac6b71769eb7b5eaee1a3d25b09b19b66",
+      "RemoteSha": "753bef4f60890ebde5c62d2a95fe91e91beba3de",
+      "RemoteHost": "api.github.com",
       "Requirements": [
         "R",
         "countrycode",
@@ -1149,7 +1149,7 @@
         "wpp2017",
         "xml2"
       ],
-      "Hash": "341ad2bd8b8671ed368dbff926726ecb"
+      "Hash": "e5c1bfa7e7ba72f1f58176597bc4140a"
     },
     "spam": {
       "Package": "spam",
