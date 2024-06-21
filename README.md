@@ -4,7 +4,6 @@
 # Synthetic contact matrices for 200 countries
 
 <!-- badges: start -->
-
 [![DOI](https://zenodo.org/badge/770713133.svg)](https://zenodo.org/doi/10.5281/zenodo.11365942)
 <!-- badges: end -->
 
@@ -27,8 +26,8 @@ the zip file. The contact matrices can be found in the folder
 **output-contact-matrices**.
 
 Each csv file is named in the convention
-`{Country}_{Environment}_2015.csv`; for example, `AUS_work_2015.csv`.
-Country names are in ISO-3 format. The five environments for each
+`{Country}_{Setting}_2015.csv`; for example, `AUS_work_2015.csv`.
+Country names are in ISO-3 format. The five settings for each
 country are: home, school, work, other, and all.
 
 Alternatively, if you would like to load specific contact matrices, here
