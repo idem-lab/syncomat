@@ -4,6 +4,7 @@
 # Synthetic contact matrices for 200 countries
 
 <!-- badges: start -->
+
 [![DOI](https://zenodo.org/badge/770713133.svg)](https://zenodo.org/doi/10.5281/zenodo.11365942)
 <!-- badges: end -->
 
@@ -26,8 +27,8 @@ the zip file. The contact matrices can be found in the folder
 **output-contact-matrices**.
 
 Each csv file is named in the convention
-`{Country}_{Setting}_2015.csv`; for example, `AUS_work_2015.csv`.
-Country names are in ISO-3 format. The five settings for each
+`{Country}_{Environment}_2015.csv`; for example, `AUS_work_2015.csv`.
+Country names are in ISO-3 format. The five environments for each
 country are: home, school, work, other, and all.
 
 Alternatively, if you would like to load specific contact matrices, here
@@ -87,9 +88,10 @@ Open the `_targets.R` file, and run all lines of code under the
 **Set-up** section to load the R packages required for this pipeline.
 You can then run `tar_make()` to run the entire pipeline.
 
-If you need more information about the pipeline, the **Methodology**
-section will explain each target object and how you can modify each
-object to suit your own analysis needs.
+If you need more information about the pipeline, the
+[**Methodology**](https://github.com/idem-lab/syncomat/blob/main/Methodology.md)
+page will explain each target object and how you can modify each object
+to suit your own analysis needs.
 
 This pipeline takes approximately 13 minutes[^3] to run, which will
 generate contact matrices for 200 countries.

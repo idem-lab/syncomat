@@ -1,4 +1,6 @@
 
+## Methodology
+
 Here we provide the relevant code from `_targets.R` and describe what
 they do.
 

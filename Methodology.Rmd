@@ -2,6 +2,8 @@
 output: github_document
 ---
 
+## Methodology
+
 Here we provide the relevant code from `_targets.R` and describe what they do.
 
 1.  Create the age-specific population data you would like to generate synthetic contact matrices for.

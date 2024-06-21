@@ -59,7 +59,7 @@ Run `renv::restore()` to install the same versions of the packages used in this 
 
 Open the `_targets.R` file, and run all lines of code under the **Set-up** section to load the R packages required for this pipeline. You can then run `tar_make()` to run the entire pipeline.
 
-If you need more information about the pipeline, the **Methodology** section will explain each target object and how you can modify each object to suit your own analysis needs.
+If you need more information about the pipeline, the [**Methodology**](https://github.com/idem-lab/syncomat/blob/main/Methodology.md) page will explain each target object and how you can modify each object to suit your own analysis needs.
 
 This pipeline takes approximately 13 minutes[^readme-4] to run, which will generate contact matrices for 200 countries.
 
