@@ -230,8 +230,13 @@
     "conmat": {
       "Package": "conmat",
       "Version": "0.0.2.9000",
-      "Source": "Repository",
-      "Repository": "https://idem-lab.r-universe.dev/",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "idem-lab",
+      "RemoteRepo": "conmat",
+      "RemoteRef": "master",
+      "RemoteSha": "419c9baf90d48923d49d95a11ff7f40142f5d29e",
       "Requirements": [
         "R",
         "cli",
@@ -255,7 +260,7 @@
         "vctrs",
         "waldo"
       ],
-      "Hash": "f2b3e4dd940242926c48add8e0476d48"
+      "Hash": "b1683fea455b88b7cb4c5110ced1abe9"
     },
     "countrycode": {
       "Package": "countrycode",
