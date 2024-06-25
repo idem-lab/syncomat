@@ -75,14 +75,15 @@ per day.
 ## Running the analysis pipeline
 
 To run this analysis pipeline, you would need to be familiar with the
-`targets` workflow.[^2] This pipeline also utilises `renv`.
+`targets` workflow.[^2] This pipeline also utilises `renv`.[^3]
 
 First, download the zip file of this analysis pipeline from our [Zenodo
 repository](https://zenodo.org/records/11365943). Open the project in a
 new RStudio session.
 
-Run `renv::restore()` to install the same versions of the packages used
-in this analysis.
+Once you’ve opened the project in a new RStudio session, you will be
+prompted to run `renv::restore()`. Run `renv::restore()` to install the
+packages used in this analysis to your workspace.
 
 Open the `_targets.R` file, and run all lines of code under the
 **Set-up** section to load the R packages required for this pipeline.
@@ -93,7 +94,7 @@ If you need more information about the pipeline, the
 page will explain each target object and how you can modify each object
 to suit your own analysis needs.
 
-This pipeline takes approximately 13 minutes[^3] to run, which will
+This pipeline takes approximately 13 minutes[^4] to run, which will
 generate contact matrices for 200 countries.
 
 ## Data sources
@@ -117,9 +118,15 @@ words, the rows are “age group to” and the columns are “age group from”.
 [^1]: For more information on the `conmat` package, refer to its
     [documentation](https://idem-lab.github.io/conmat/dev/index.html).
 
-[^2]: For more information on `targets` workflow, refer to the `targets`
+[^2]: For information on the `targets` workflow, refer to the `targets`
     [user manual](https://books.ropensci.org/targets/).
 
-[^3]: This pipeline took 13 minutes to run on a computer equipped with
+[^3]: For information on how `renv` works, refer to the Introduction to
+    `renv`
+    [vignette](https://rstudio.github.io/renv/articles/renv.html). For a
+    quick overview, refer to its
+    [website](https://rstudio.github.io/renv/index.html).
+
+[^4]: This pipeline took 13 minutes to run on a computer equipped with
     an Intel Core i7-8565U and 16 GB of RAM running a 64-bit version of
     Windows.

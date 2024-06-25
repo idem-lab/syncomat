@@ -49,13 +49,15 @@ Each cell is the expected number of people that an individual will have contact 
 
 ## Running the analysis pipeline
 
-To run this analysis pipeline, you would need to be familiar with the `targets` workflow.[^readme-2] This pipeline also utilises `renv`.
+To run this analysis pipeline, you would need to be familiar with the `targets` workflow.[^readme-2] This pipeline also utilises `renv`.[^readme-5]
 
-[^readme-2]: For more information on `targets` workflow, refer to the `targets` [user manual](https://books.ropensci.org/targets/).
+[^readme-2]: For information on the `targets` workflow, refer to the `targets` [user manual](https://books.ropensci.org/targets/).
+
+[^readme-5]: For information on how `renv` works, refer to the Introduction to `renv` [vignette](https://rstudio.github.io/renv/articles/renv.html). For a quick overview, refer to its [website](https://rstudio.github.io/renv/index.html).
 
 First, download the zip file of this analysis pipeline from our [Zenodo repository](https://zenodo.org/records/11365943). Open the project in a new RStudio session.
 
-Run `renv::restore()` to install the same versions of the packages used in this analysis.
+Once you've opened the project in a new RStudio session, you will be prompted to run `renv::restore()`. Run `renv::restore()` to install the packages used in this analysis to your workspace.
 
 Open the `_targets.R` file, and run all lines of code under the **Set-up** section to load the R packages required for this pipeline. You can then run `tar_make()` to run the entire pipeline.
 
