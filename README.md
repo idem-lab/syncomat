@@ -83,7 +83,9 @@ new RStudio session.
 
 Once you’ve opened the project in a new RStudio session, you will be
 prompted to run `renv::restore()`. Run `renv::restore()` to install the
-packages used in this analysis to your workspace.
+packages used in this analysis to your workspace. If you then come
+across issues, run `renv::status()`. Also run `?renv::status()` for
+advice on resolving these issues.
 
 Open the `_targets.R` file, and run all lines of code under the
 **Set-up** section to load the R packages required for this pipeline.
