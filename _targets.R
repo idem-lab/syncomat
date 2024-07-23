@@ -14,7 +14,8 @@ tar_option_set(
                "fs",
                "purrr",
                "furrr",
-               "cli")
+               "cli",
+               "visNetwork")
   )
 
 tar_option_set(workspace_on_error = TRUE)
